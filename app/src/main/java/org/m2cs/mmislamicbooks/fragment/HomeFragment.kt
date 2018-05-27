@@ -4,6 +4,7 @@ package org.m2cs.mmislamicbooks.fragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,7 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     val books: ArrayList<Books> = ArrayList()
 
@@ -37,7 +38,7 @@ class HomeFragment : Fragment() {
         val view: View = inflater!!.inflate(R.layout.fragment_home, container,
                 false)
         initializedArray()
-        view.recyclerView.layoutManager = GridLayoutManager(activity,2)
+        view.recyclerView.layoutManager = GridLayoutManager(activity,2) as RecyclerView.LayoutManager?
         view.recyclerView.isNestedScrollingEnabled=false
         mHomeAdapter = HomeFragAdapter(context)
         mHomeAdapter.replaceData(books)

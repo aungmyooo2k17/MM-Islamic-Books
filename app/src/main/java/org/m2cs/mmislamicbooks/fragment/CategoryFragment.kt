@@ -18,7 +18,7 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class CategoryFragment : Fragment() {
+class CategoryFragment : BaseFragment() {
     companion object {
         fun newInstance():CategoryFragment= CategoryFragment()
     }

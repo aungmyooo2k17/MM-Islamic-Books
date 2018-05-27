@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -14,10 +13,34 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="@string/home"
-            app:titleTextColor="@android:color/black"
-            app:layout_collapseMode="none"/>
+            android:layout_height="wrap_content"
+            app:layout_collapseMode="none">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_main_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="@dimen/text_big"
+                android:textStyle="bold"
+                android:textColor="@color/primaryText"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_settings"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_centerVertical="true"
+                />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
 
@@ -40,8 +63,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@color/bgBottomNavigation"
-        app:itemTextColor="@android:color/black"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:itemIconTint="@color/bottom_nav_color"
         app:menu="@menu/navigation_menu"/>
 
 </android.support.constraint.ConstraintLayout>

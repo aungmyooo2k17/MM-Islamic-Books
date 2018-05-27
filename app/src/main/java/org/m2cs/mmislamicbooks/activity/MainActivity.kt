@@ -28,25 +28,25 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                toolbar.title = "Home"
+                tv_main_title.text = "Home"
                 val homeFragment = HomeFragment.newInstance()
                 openFragment(homeFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_category -> {
-                toolbar.title = "Category"
+                tv_main_title.text = "Category"
                 val categoryFragment = CategoryFragment.newInstance()
                 openFragment(categoryFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_author -> {
-                toolbar.title = "Author"
+                tv_main_title.text = "Author"
                 val authorFragment = AuthorFragment.newInstance()
                 openFragment(authorFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-                toolbar.title = "Profile"
+                tv_main_title.text = "Profile"
                 val profileFragment = ProfileFragment.newInstance()
                 openFragment(profileFragment)
                 return@OnNavigationItemSelectedListener true
