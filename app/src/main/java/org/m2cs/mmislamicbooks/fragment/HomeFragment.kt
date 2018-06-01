@@ -38,11 +38,9 @@ class HomeFragment : BaseFragment() {
         val view: View = inflater!!.inflate(R.layout.fragment_home, container,
                 false)
         initializedArray()
-        view.recyclerView.layoutManager = GridLayoutManager(activity,2) as RecyclerView.LayoutManager?
-        view.recyclerView.isNestedScrollingEnabled=false
-        mHomeAdapter = HomeFragAdapter(context)
-        mHomeAdapter.replaceData(books)
-        view.recyclerView.adapter = mHomeAdapter
+
+        setUpRecyclerView(view)
+
 
 
         return view
@@ -55,6 +53,15 @@ class HomeFragment : BaseFragment() {
             books.add(Books())
         }
 
+    }
+
+    private fun setUpRecyclerView(view:View)
+    {
+        view.recyclerView.layoutManager = GridLayoutManager(activity,2) as RecyclerView.LayoutManager?
+        view.recyclerView.isNestedScrollingEnabled=false
+        mHomeAdapter = HomeFragAdapter(context)
+        mHomeAdapter.replaceData(books)
+        view.recyclerView.adapter = mHomeAdapter
     }
 
 
