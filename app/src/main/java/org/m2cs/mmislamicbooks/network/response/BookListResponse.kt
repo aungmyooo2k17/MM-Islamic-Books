@@ -7,6 +7,7 @@ import org.m2cs.mmislamicbooks.data.vo.BookVO
 class BookListResponse{
 
     @SerializedName("Sheet1")
-    private val mBooKVOS: List<BookVO>? = null
+
+    public var getBooks: List<BookVO>? = null
 
 }

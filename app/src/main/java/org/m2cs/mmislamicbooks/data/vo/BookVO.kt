@@ -6,34 +6,31 @@ import com.google.gson.annotations.SerializedName
 
 class BookVO{
     @SerializedName("book_id")
-    private val bookId: String? = null
+    public var bookId: String? = null
 
     @SerializedName("book_name")
-    private val bookName: String? = null
+    public var bookName: String? = null
 
     @SerializedName("book_cover")
-    private val bookCover: String? = null
+    public var bookCover: String? = null
 
     @SerializedName("book_detail_cover")
-    private val bookDetailCover: String? = null
+    public var bookDetailCover: String? = null
 
     @SerializedName("book_sub_title")
-    private val bookSubTitle: String? = null
+    public var bookSubTitle: String? = null
 
     @SerializedName("book_desc")
-    private val bookDesc: String? = null
+    public var bookDesc: String? = null
 
     @SerializedName("book_download_link")
-    private val bookDownloadLink: String? = null
+    public var bookDownloadLink: String? = null
 
     @SerializedName("author_id")
-    private val authorId: String? = null
+    public var authorId: String? = null
 
     @SerializedName("category_id")
-    private val categoryId: String? = null
-
-
-
+    public var categoryId: String? = null
 
 
 }

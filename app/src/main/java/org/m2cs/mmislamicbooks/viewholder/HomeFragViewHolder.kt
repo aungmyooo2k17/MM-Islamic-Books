@@ -1,25 +1,25 @@
 package org.m2cs.mmislamicbooks.viewholder
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.home_content_view.view.*
-import org.m2cs.mmislamicbooks.activity.BookDetailActivity
-import org.m2cs.mmislamicbooks.model.Books
+import org.m2cs.mmislamicbooks.data.vo.BookVO
+import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
 
-class HomeFragViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-
+class HomeFragViewHolder(itemView: View,val mBooksItemDelegate: BooksItemDelegate) : BaseViewHolder<BookVO>(itemView) {
 
 
-    private val tvTitle = itemView.bookTitle
-    private val tvAuthor = itemView.bookAuthor
-    private val imgThumbnail = itemView.thumbnail
+    private val tvTitle = itemView.tv_book_title_detail
+    private val tvAuthor = itemView.tv_book_author_detail
+    private val imgBookCover = itemView.iv_book_cover
     val context: Context = itemView.context
 
-    private lateinit var mBook: Books
 
+//    private lateinit var mBook: Books
+
+
+    /*
     fun bind(book: Books) {
         mBook = book
 
@@ -28,7 +28,20 @@ class HomeFragViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Glide.with(itemView.context).load(book.imageLink).into(imgThumbnail)
         imgThumbnail.setOnClickListener{
 
-            context.startActivity(BookDetailActivity.getIntent(context, book))        }
+            context.startActivity(BookDetailActivity.newIntent(context, book))        }
+
+    }
+    */
+
+
+
+    override fun bind(data: BookVO) {
+        tvTitle.text = data.bookName
+        tvAuthor.text = data.authorId
+        Glide.with(itemView.context).load(data.bookCover).into(imgBookCover)
+        itemView.setOnClickListener(View.OnClickListener {
+            mBooksItemDelegate.onTapBookItem(data)
+        })
 
     }
 

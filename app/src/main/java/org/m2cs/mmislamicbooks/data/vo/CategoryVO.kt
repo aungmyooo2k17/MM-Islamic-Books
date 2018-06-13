@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 class CategoryVO{
 
     @SerializedName("category_id")
-    private val categoryId: String? = null
+    public val categoryId: String? = null
 
     @SerializedName("category_type")
-    private val categoryType: String? = null
+    public val categoryType: String? = null
 
 }

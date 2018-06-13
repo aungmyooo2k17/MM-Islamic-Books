@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:layout_marginLeft="@dimen/margin_medium"
@@ -9,15 +10,16 @@
     android:layout_marginBottom="@dimen/margin_medium_2">
 
     <ImageView
-        android:id="@+id/thumbnail"
+        android:id="@+id/iv_book_cover"
         android:layout_width="140dp"
         android:layout_height="180dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_home" />
+        android:src="@drawable/ic_home"
+        tools:ignore="UnusedAttribute"/>
 
     <TextView
-        android:id="@+id/bookTitle"
+        android:id="@+id/tv_book_title_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="The Human"
@@ -27,7 +29,7 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/bookAuthor"
+        android:id="@+id/tv_book_author_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="J K Rolling"

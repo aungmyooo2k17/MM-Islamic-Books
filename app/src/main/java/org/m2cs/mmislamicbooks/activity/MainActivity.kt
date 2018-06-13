@@ -1,12 +1,21 @@
 package org.m2cs.mmislamicbooks.activity
 
+import android.app.ActivityOptions
+import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
+import android.view.View
+import android.widget.ImageView
 import com.example.soe_than.pdftesting.utilities.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import org.m2cs.mmislamicbooks.R
+import org.m2cs.mmislamicbooks.R.id.iv_book_cover
+import org.m2cs.mmislamicbooks.data.vo.BookVO
+import org.m2cs.mmislamicbooks.delegates.BookMainDelegate
+import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
 import org.m2cs.mmislamicbooks.fragment.AuthorFragment
 import org.m2cs.mmislamicbooks.fragment.CategoryFragment
 import org.m2cs.mmislamicbooks.fragment.HomeFragment
@@ -15,7 +24,9 @@ import org.m2cs.mmislamicbooks.models.AuthorModel
 import org.m2cs.mmislamicbooks.models.BookModel
 import org.m2cs.mmislamicbooks.models.CategoryModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BookMainDelegate{
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,13 +38,14 @@ class MainActivity : AppCompatActivity() {
 
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         Utils.disableShiftMode(navigationView)
-        BookModel.getsObjectInstance().loadPerson()
+        BookModel.getsObjectInstance().loadBook()
         CategoryModel.getObjectInstance().loadCategory()
-        AuthorModel.getsObjectInstance().loadAuthor()
+//        AuthorModel.getsObjectInstance().loadAuthor()
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
+                BookModel.getsObjectInstance().loadBook()
                 tv_main_title.text = "Home"
                 val homeFragment = HomeFragment.newInstance()
                 openFragment(homeFragment)
@@ -71,5 +83,17 @@ class MainActivity : AppCompatActivity() {
         super.onBackPressed()
         finish()
     }
+
+    override fun onTapBook(bookVO: BookVO) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            // Apply activity transition
+        } else {
+            // Swap without transition
+        }
+        val intent: Intent = BookDetailActivity.newIntent(this, bookVO)
+//        val optionsCompat: ActivityOptionsCompat = makeSceneTransitionAnimation(this, iv_book_detail_cover, "bookcover")
+        startActivity(intent)
+    }
+
 
 }

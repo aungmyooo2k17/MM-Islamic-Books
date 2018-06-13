@@ -7,5 +7,5 @@ import org.m2cs.mmislamicbooks.data.vo.CategoryVO
 class CategoryListResponse{
 
     @SerializedName("Sheet1")
-    private val mCategoryVOS: List<CategoryVO>? = null
+    public val getCategory: List<CategoryVO>? = null
 }

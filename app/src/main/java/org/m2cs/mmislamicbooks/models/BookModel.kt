@@ -7,21 +7,24 @@ import org.m2cs.mmislamicbooks.network.response.BookListResponse
 
 import java.util.HashMap
 
-import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import org.greenrobot.eventbus.EventBus
+import org.m2cs.mmislamicbooks.data.vo.CategoryVO
+import org.m2cs.mmislamicbooks.events.DataEvents
 
 class BookModel private constructor() : BaseModel() {
-    private val mQuestions: Map<String, BookVO>
+    private var mBooks: Map<String, BookVO>
+    private var bookList: List<BookVO> = ArrayList<BookVO>()
 
     init {
-        mQuestions = HashMap()
+        mBooks = HashMap()
 
     }
 
-    fun loadPerson() {
+    fun loadBook() {
         val personListResponseObservable = theApi.loadQuestion()
 
         personListResponseObservable
@@ -32,8 +35,25 @@ class BookModel private constructor() : BaseModel() {
                         Log.d("TAG", "onSubscribe: " + d.isDisposed)
                     }
 
-                    override fun onNext(personListResponse: BookListResponse) {
-                        Log.d("Tag", "onNext "+personListResponse)
+                    override fun onNext(bookListResponse: BookListResponse) {
+                        Log.d("Tag", "onNext "+bookListResponse)
+
+                        bookList = bookListResponse.getBooks!!
+
+                        mBooks = HashMap()
+
+                        for (book : BookVO in bookListResponse.getBooks!!){
+                            (mBooks as HashMap<String, BookVO>).put(book.bookId!!, book)
+                        }
+
+
+                        var event: DataEvents.BookLoadedEvent = DataEvents.BookLoadedEvent(bookListResponse.getBooks!!)
+                        EventBus.getDefault().post(event)
+
+
+
+
+
                     }
 
                     override fun onError(e: Throwable) {
@@ -55,5 +75,21 @@ class BookModel private constructor() : BaseModel() {
             }
             return sObjInstance as BookModel
         }
+    }
+
+
+    fun getBookById(questionId: String): BookVO? {
+        return mBooks.get(questionId)
+    }
+
+    fun getBookByCategoryId(categoryId: String): List<BookVO> {
+        var mBook:ArrayList<BookVO> = ArrayList<BookVO>()
+        for (book: BookVO in bookList){
+            if(book.categoryId.equals(categoryId)){
+                mBook.add(book)
+            }
+        }
+
+        return mBook
     }
 }
