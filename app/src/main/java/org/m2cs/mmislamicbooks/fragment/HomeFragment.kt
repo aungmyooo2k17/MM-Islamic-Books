@@ -10,9 +10,12 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.ActivityOptionsCompat.makeSceneTransitionAnimation
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.soe_than.pdftesting.utilities.Utils
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.home_content_view.*
 import org.greenrobot.eventbus.EventBus
@@ -44,6 +47,7 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
     val books: ArrayList<Books> = ArrayList()
 
     public lateinit var mHomeAdapter: HomeFragAdapter
+
     companion object {
         fun newInstance(): HomeFragment = HomeFragment()
     }
@@ -53,30 +57,43 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_home, container,
                 false)
+
+        var isConnected = Utils.checkConnectivity(context!!)
+
+        Log.i("HomeFrag","$isConnected")
+
+        if (isConnected) {
+//            recyclerView.visibility = View.VISIBLE
+            setUpRecyclerView(view)
+
+
+        } else {
+            Log.i("HomeFrag","No inter")
+            view.recyclerView.visibility=View.GONE
+            view.internetStatus.visibility = View.VISIBLE
+//            internetStatus.visibility = view
+//            recyclerView.visibility = View.GONE
+
+        }
         initializedArray()
 
-        setUpRecyclerView(view)
 
 
 
         return view
     }
 
-    private fun initializedArray()
-    {
-        for (i in 1..15)
-        {
+    private fun initializedArray() {
+        for (i in 1..15) {
             books.add(Books())
         }
 
     }
 
-    private fun setUpRecyclerView(view:View)
-    {
-        view.recyclerView.layoutManager = GridLayoutManager(activity,2)
-        view.recyclerView.isNestedScrollingEnabled=false
+    private fun setUpRecyclerView(view: View) {
+        view.recyclerView.layoutManager = GridLayoutManager(activity, 2)
+        view.recyclerView.isNestedScrollingEnabled = false
         mHomeAdapter = HomeFragAdapter(context, this)
-//        mHomeAdapter.setNewData(App.globalBookList as MutableList<BookVO>)
         view.recyclerView.adapter = mHomeAdapter
     }
 

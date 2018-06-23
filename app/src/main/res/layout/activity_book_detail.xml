@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UnusedAttribute"/>
+            tools:ignore="UnusedAttribute" />
 
 
         <RelativeLayout
@@ -43,36 +43,69 @@
                 android:id="@+id/tv_book_title_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/btn_download"
-                android:text="BookTitle"
                 android:layout_marginRight="@dimen/margin_medium_2"
+                android:text="BookTitle"
                 android:textColor="@color/primaryText"
                 android:textSize="@dimen/text_regular_3x"
                 android:textStyle="bold" />
 
+
+
             <TextView
                 android:id="@+id/tv_book_author_detail"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_book_title_details"
-                android:layout_marginRight="@dimen/margin_medium_2"
-                android:layout_toLeftOf="@id/btn_download"
                 android:text="Author"
                 android:textColor="@color/secondaryText"
                 android:textSize="@dimen/text_regular" />
-
-
             <Button
-                android:id="@+id/btn_download"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/button_border"
-                android:paddingLeft="@dimen/margin_card_medium_2"
-                android:paddingRight="@dimen/margin_card_medium_2"
-                android:text="Download"
-                android:textColor="@color/colorAccent" />
+                android:id="@+id/btn_download"
+                android:textColor="@android:color/white"
+                android:background="@color/colorAccent"
+                android:layout_alignParentEnd="true"/>
+            <ImageView
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close"
+                android:layout_below="@id/btn_download"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/margin_medium_3"
+                android:visibility="visible"/>
+
+
+            <TextView
+                android:id="@+id/tv_download_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_download"
+                android:layout_marginTop="@dimen/margin_card_medium_2"
+                android:text="3.5Kb/3.5Mb" />
+
+            <TextView
+                android:id="@+id/tv_download_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_download"
+                android:layout_marginTop="@dimen/margin_card_medium_2"
+                android:text="33%"
+                android:layout_toLeftOf="@id/btn_cancel"
+                android:layout_marginRight="@dimen/margin_card_medium_2"/>
+
+            <ProgressBar
+                android:id="@+id/btn_progress"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:layout_below="@id/tv_download_percent"
+                android:layout_marginRight="@dimen/margin_medium_3"
+                android:layout_toLeftOf="@id/btn_cancel"/>
+
+
         </RelativeLayout>
 
 
@@ -80,9 +113,9 @@
             android:id="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/margin_medium_2"
             android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginTop="8dp"
             android:background="@color/colorPrimaryDark"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
@@ -122,11 +155,11 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/tv_book_desc_detail"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="@dimen/margin_medium_2"
             android:layout_marginLeft="@dimen/margin_medium_2"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            android:layout_marginTop="16dp"
             android:background="@color/colorPrimaryDark"
-            app:layout_constraintTop_toBottomOf="@+id/tv_book_desc_detail"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_book_desc_detail" />
 
         <TextView
             android:id="@+id/titleSimilar"

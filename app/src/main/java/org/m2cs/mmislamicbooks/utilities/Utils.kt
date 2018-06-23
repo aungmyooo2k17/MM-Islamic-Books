@@ -2,6 +2,7 @@ package com.example.soe_than.pdftesting.utilities
 
 import android.R
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.res.Resources
 import android.support.design.widget.BottomNavigationView
 import android.support.design.internal.BottomNavigationItemView
@@ -10,6 +11,9 @@ import java.lang.reflect.Array.setBoolean
 import android.support.design.internal.BottomNavigationMenuView
 import android.util.Log
 import android.util.TypedValue
+import android.content.Context.CONNECTIVITY_SERVICE
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 
 
 class Utils {
@@ -36,6 +40,19 @@ class Utils {
             }
 
 
+        }
+
+
+        fun checkConnectivity(context: Context): Boolean {
+            val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val netInfo = cm.activeNetworkInfo
+
+
+            if (netInfo != null && netInfo.isConnectedOrConnecting) {
+                return true
+            } else {
+                return false
+            }
         }
 
 

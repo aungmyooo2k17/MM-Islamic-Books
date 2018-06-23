@@ -6,6 +6,21 @@
     tools:context=".fragment.HomeFragment"
     android:background="@color/colorPrimary">
 
+
+    <ProgressBar
+        android:id="@+id/homeProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:id="@+id/internetStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Internet"
+        android:textSize="@dimen/text_regular_3x"
+        android:visibility="gone"/>
+
     <EditText
         android:id="@+id/edt_search"
         android:layout_width="match_parent"

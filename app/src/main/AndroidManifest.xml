@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.m2cs.mmislamicbooks">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -24,7 +26,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BookDetailActivity" />
-        <activity android:name=".activity.CategoryMenu"></activity>
+        <activity android:name=".activity.CategoryMenu" />
+        <activity android:name=".activity.DownloadDetailActivity" />
+        <activity android:name=".activity.PdfReaderActivity"></activity>
+        <service android:name=".service.DownloadService"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

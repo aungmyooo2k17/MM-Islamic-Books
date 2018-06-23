@@ -11,21 +11,19 @@ import android.view.View
 import android.widget.ImageView
 import com.example.soe_than.pdftesting.utilities.Utils
 import kotlinx.android.synthetic.main.activity_main.*
+import org.m2cs.mmislamicbooks.App
 import org.m2cs.mmislamicbooks.R
 import org.m2cs.mmislamicbooks.R.id.iv_book_cover
 import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.delegates.BookMainDelegate
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
-import org.m2cs.mmislamicbooks.fragment.AuthorFragment
-import org.m2cs.mmislamicbooks.fragment.CategoryFragment
-import org.m2cs.mmislamicbooks.fragment.HomeFragment
-import org.m2cs.mmislamicbooks.fragment.ProfileFragment
+import org.m2cs.mmislamicbooks.fragment.*
 import org.m2cs.mmislamicbooks.models.AuthorModel
 import org.m2cs.mmislamicbooks.models.BookModel
 import org.m2cs.mmislamicbooks.models.CategoryModel
+import org.m2cs.mmislamicbooks.receiver.DownloadCompleteReceiver
 
-class MainActivity : AppCompatActivity(), BookMainDelegate{
-
+class MainActivity : AppCompatActivity(), BookMainDelegate {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +40,7 @@ class MainActivity : AppCompatActivity(), BookMainDelegate{
         CategoryModel.getObjectInstance().loadCategory()
 //        AuthorModel.getsObjectInstance().loadAuthor()
     }
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -64,14 +63,15 @@ class MainActivity : AppCompatActivity(), BookMainDelegate{
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-                tv_main_title.text = "Profile"
-                val profileFragment = ProfileFragment.newInstance()
-                openFragment(profileFragment)
+                tv_main_title.text = "Downloads"
+                val downloadsFragment = DownloadsFragment.newInstance()
+                openFragment(downloadsFragment)
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
     }
+
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment)
@@ -94,6 +94,5 @@ class MainActivity : AppCompatActivity(), BookMainDelegate{
 //        val optionsCompat: ActivityOptionsCompat = makeSceneTransitionAnimation(this, iv_book_detail_cover, "bookcover")
         startActivity(intent)
     }
-
 
 }
