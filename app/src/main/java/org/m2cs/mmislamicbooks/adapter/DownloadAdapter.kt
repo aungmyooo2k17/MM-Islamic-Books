@@ -24,7 +24,7 @@ class DownloadAdapter(val context: Context?, val mDownloadItemDelegate: Download
 
     lateinit var mDatabase: DbHelper
 
-    lateinit var mDownloadVo: DownloadVO
+     lateinit var mDownloadVo: DownloadVO
 
     init {
         mDatabase = DbHelper(context!!)
@@ -39,18 +39,21 @@ class DownloadAdapter(val context: Context?, val mDownloadItemDelegate: Download
     override fun onBindViewHolder(holder: DownloadViewHolder, position: Int) {
         mDownloadVo = getItem(position)!!
 
-
         holder.bind(mDownloadVo)
     }
 
     fun getItem(position: Int): DownloadVO? {
         Log.i("Hi", "${mDatabase.getCount()}")
+
         return mDatabase.getItemAt(position)
     }
+
+
 
     override fun getItemCount(): Int {
         return mDatabase.getCount()
     }
+
 
 
 }

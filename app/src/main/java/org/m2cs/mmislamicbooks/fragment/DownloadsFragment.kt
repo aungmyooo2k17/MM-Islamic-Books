@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.soe_than.pdftesting.utilities.Utils
 import kotlinx.android.synthetic.main.fragment_category.view.*
 import kotlinx.android.synthetic.main.fragment_downloads.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -36,11 +37,14 @@ private const val ARG_PARAM2 = "param2"
  */
 class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
     override fun onTapRead(downloadBook: DownloadVO) {
-         var intent = PdfReaderActivity.newIntent(context!!, downloadBook.mFilePath);
+        var intent = PdfReaderActivity.newIntent(context!!, downloadBook.mFilePath);
         startActivity(intent);
     }
 
     lateinit var mDatabase: DbHelper
+    var fileNameList = arrayListOf<String>()
+    var mdownloadVo = null
+
     override fun onTapDelete(downloadVo: DownloadVO, adapterPosition: Int) {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle("Alert")
@@ -63,7 +67,6 @@ class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
     }
 
 
-
     lateinit var downloadAdapter: DownloadAdapter
 
     companion object {
@@ -72,7 +75,7 @@ class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        observer.startWatching()
+//        observer.startWatching()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -80,7 +83,13 @@ class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_downloads, container, false)
         setUpRecyclerView(view)
-        mDatabase=DbHelper(context!!)
+        mDatabase = DbHelper(context!!)
+        fileNameList = Utils.getListFile()
+        mDatabase.getBookTitle()
+//        if (fileNameList.size != 0) {
+//            checkFilePath(fileNameList, mDatabase.getBookTitle())
+//
+//        }
         return view
     }
 
@@ -91,22 +100,18 @@ class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
         view.downloadRecyclerView.adapter = downloadAdapter
     }
 
-    var observer: FileObserver = object : FileObserver(android.os.Environment.getExternalStorageDirectory().toString() + "/MM-Islamic-Books") {
-        override fun onEvent(event: Int, file: String?) {
-            if (event == FileObserver.DELETE) {
 
-                val filePath = (android.os.Environment.getExternalStorageDirectory().toString()
-                        + "/SoundRecorder" + file + "]")
-
-                Log.d("DownloadFragment", "File deleted ["
-                        + android.os.Environment.getExternalStorageDirectory().toString()
-                        + "/SoundRecorder" + file + "]")
-
-                // remove file from database and recyclerview
-//                mFileViewerAdapter.removeOutOfApp(filePath)
-            }
-        }
-    }
+//    fun checkFilePath(fileList: ArrayList<String>, downloadList: ArrayList<String>) {
+//        for (fileItem in fileList) {
+//            for (downloadItem in downloadList) {
+//                if (downloadItem.equals(fileItem)) {
+//                    downloadAdapter.removeItemFromDb()
+//
+//                }
+//            }
+//        }
+//
+//    }
 
 
 }

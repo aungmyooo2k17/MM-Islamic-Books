@@ -38,6 +38,7 @@ import android.view.View
 import android.widget.*
 import butterknife.BindView
 import butterknife.ButterKnife
+import org.m2cs.mmislamicbooks.App.Companion.downIds
 import org.m2cs.mmislamicbooks.R.id.*
 import org.m2cs.mmislamicbooks.database.DbHelper
 import org.m2cs.mmislamicbooks.utils.DownloadUtils.getBookSize
@@ -54,12 +55,16 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
     lateinit var downloadManager: DownloadManager
     lateinit var downloadManagerPro: DownloadManagerPro
 
+
     var stringUrl: String = ""
 
     var PERMISSION_CODE: Int = 0
     lateinit var handler: Handler
     internal lateinit var downloadObserver: DownloadChangeObserver
-//    internal lateinit var completeReceiver: CompleteReceiver
+    var downloadId: Long = 0
+    lateinit var mFileName: String
+    //    lateinit var mFilePath: String
+    lateinit var bookVO: BookVO
 
 
     init {
@@ -69,13 +74,7 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
     companion object {
         val BOOK_KEY = "book_key"
         lateinit var mDatabse: DbHelper
-        var downloadId: Long = 0
         var KEY_NAME_DOWNLOAD_ID = ""
-        lateinit var bookVO: BookVO
-        lateinit var mFileName: String
-        lateinit var mFilePath: String
-
-
 
 
         @JvmStatic
@@ -84,8 +83,6 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
             intent.putExtra(BOOK_KEY, book.bookId)
             return intent
         }
-
-
 
 
     }
@@ -104,11 +101,10 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
         tv_book_author_detail.text = bookVO.authorId
         tv_book_desc_detail.text = bookVO.bookDesc
         stringUrl = bookVO.bookDownloadLink.toString()
-        KEY_NAME_DOWNLOAD_ID = bookVO.bookId.toString()
+        KEY_NAME_DOWNLOAD_ID = bookVO.bookId
         Glide.with(this).load(bookVO.bookDetailCover).into(iv_book_detail_cover)
 
         if (checkDownloadBook()) {
-            Log.i("BookDetailCheck", "AlreadDown")
             btn_download.text = "Read"
         } else {
             btn_download.text = "Download"
@@ -129,16 +125,10 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
         initData()
 
         downloadObserver = DownloadChangeObserver();
-//        completeReceiver = CompleteReceiver();
-        /** register download success broadcast **/
-//        registerReceiver(completeReceiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-
-
     }
 
     fun checkDownloadBook(): Boolean {
-        var bookList = listOf<String>()
-        bookList = mDatabse.getBookTitle()
+        var bookList = mDatabse.getBookTitle()
         for (item in bookList) {
             if (item.equals(bookVO.bookName, true)) {
                 Log.i("TAG!", item)
@@ -185,8 +175,8 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
         val uri = Uri.parse(stringUrl)
         val request = DownloadManager.Request(uri)
         mFileName = bookVO.bookName + ".pdf"
-        mFilePath = Environment.getExternalStorageDirectory().absolutePath
-        mFilePath += "/${getString(R.string.app_name)}/$mFileName"
+//        mFilePath = Environment.getExternalStorageDirectory().absolutePath
+//        mFilePath += "/${getString(R.string.app_name)}/$mFileName"
 
 
         request.setTitle(bookVO.bookName)
@@ -195,7 +185,10 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
                 .setDestinationInExternalPublicDir("/MM Islamic Books", mFileName)
                 .setVisibleInDownloadsUi(true)
         downloadId = downloadManager.enqueue(request)
+        downIds.add(downloadId)
+        PreferencesUtils.putArrayList(this)
         PreferencesUtils.putLong(this, KEY_NAME_DOWNLOAD_ID, downloadId);
+        PreferencesUtils.putBookVo(this, downloadId.toString(), bookVO)
 
     }
 
@@ -233,22 +226,6 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
         }
 
     }
-//
-//    internal inner class CompleteReceiver : BroadcastReceiver() {
-//
-//        override fun onReceive(context: Context, intent: Intent) {
-//
-//            val completeDownloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-//            if (completeDownloadId == downloadId) {
-//                updateView()
-//                Log.i("BookDetailBroadcast","$downloadId")
-//                mDatabse.addBook(bookVO, mFilePath)
-//                PreferencesUtils.removeValue(this@BookDetailActivity, KEY_NAME_DOWNLOAD_ID)
-//
-//
-//            }
-//        }
-//    }
 
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -331,17 +308,10 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
         updateView();
     }
 
-    //
-//
+
     override fun onPause() {
         super.onPause();
         contentResolver.unregisterContentObserver(downloadObserver);
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy();
-//        unregisterReceiver(completeReceiver);
     }
 
 

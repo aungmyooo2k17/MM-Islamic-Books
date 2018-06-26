@@ -10,21 +10,21 @@ import org.m2cs.mmislamicbooks.receiver.DownloadCompleteReceiver
 
 class App : Application() {
 
-    lateinit var completeReceiver:DownloadCompleteReceiver
+    lateinit var completeReceiver: DownloadCompleteReceiver
 
     override fun onCreate() {
         super.onCreate()
-        completeReceiver= DownloadCompleteReceiver()
+        completeReceiver = DownloadCompleteReceiver()
         registerReceiver(completeReceiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
 //        BookModel.getsObjectInstance().loadBook()
 
     }
 
 
-
     companion object {
 
         var TAG = "MMISLAMICBOOK"
         var globalBookList: List<BookVO>? = ArrayList<BookVO>()
+        var downIds = arrayListOf<Long>()
     }
 }

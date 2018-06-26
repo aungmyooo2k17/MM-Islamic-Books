@@ -56,13 +56,8 @@ class MainActivity : AppCompatActivity(), BookMainDelegate {
                 openFragment(categoryFragment)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_author -> {
-                tv_main_title.text = "Author"
-                val authorFragment = AuthorFragment.newInstance()
-                openFragment(authorFragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_profile -> {
+
+            R.id.navigation_download -> {
                 tv_main_title.text = "Downloads"
                 val downloadsFragment = DownloadsFragment.newInstance()
                 openFragment(downloadsFragment)

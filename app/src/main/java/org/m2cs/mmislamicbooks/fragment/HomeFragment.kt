@@ -60,21 +60,21 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
 
         var isConnected = Utils.checkConnectivity(context!!)
 
-        Log.i("HomeFrag","$isConnected")
 
         if (isConnected) {
-//            recyclerView.visibility = View.VISIBLE
-            setUpRecyclerView(view)
-
-
+            getConnected(view)
         } else {
-            Log.i("HomeFrag","No inter")
-            view.recyclerView.visibility=View.GONE
-            view.internetStatus.visibility = View.VISIBLE
-//            internetStatus.visibility = view
-//            recyclerView.visibility = View.GONE
+            noConnection(view)
 
         }
+
+        view.btn_retry.setOnClickListener({
+            recheckInternet(it)
+        })
+
+
+
+
         initializedArray()
 
 
@@ -88,6 +88,16 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
             books.add(Books())
         }
 
+    }
+
+    fun getConnected(view: View) {
+        setUpRecyclerView(view)
+    }
+
+    fun noConnection(view: View) {
+        view.recyclerView.visibility = View.GONE
+        view.internetStatus.visibility = View.VISIBLE
+        view.btn_retry.visibility = View.VISIBLE
     }
 
     private fun setUpRecyclerView(view: View) {
@@ -119,6 +129,10 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
 
         val intent: Intent = BookDetailActivity.newIntent(context, bookVO)
         context!!.startActivity(intent)
+    }
+
+    fun recheckInternet(view: View) {
+        if (Utils.checkConnectivity(context!!)) getConnected(view) else noConnection(view)
     }
 
 }

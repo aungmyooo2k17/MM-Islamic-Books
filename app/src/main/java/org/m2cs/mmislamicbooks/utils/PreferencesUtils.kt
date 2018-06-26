@@ -3,6 +3,14 @@ package org.m2cs.mmislamicbooks.utils
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.text.TextUtils
+import android.util.Log
+import com.google.gson.Gson
+import org.m2cs.mmislamicbooks.App
+import org.m2cs.mmislamicbooks.App.Companion.downIds
+import com.google.gson.reflect.TypeToken
+import org.m2cs.mmislamicbooks.App.Companion.TAG
+import org.m2cs.mmislamicbooks.data.vo.BookVO
 
 
 object PreferencesUtils {
@@ -110,4 +118,43 @@ object PreferencesUtils {
         val settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
         return settings.getBoolean(key, defaultValue)
     }
+
+    fun putArrayList(context: Context) {
+        val settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        val editor = settings.edit()
+        var gson = Gson()
+        var jsonList = gson.toJson(App.downIds)
+        editor.putString("downIds", jsonList)
+        editor.commit()
+
+    }
+
+
+    fun getArrayList(context: Context, key: String): ArrayList<Long> {
+        var gson = Gson()
+        val settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        var json = settings.getString(key, "")
+        val type = object : TypeToken<ArrayList<Long>>() {}.type
+        return gson.fromJson(json, type)
+    }
+
+
+    fun putBookVo(context: Context, key: String, bokVO: BookVO) {
+        val settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        val editor = settings.edit()
+        var gson = Gson()
+        var jsonBookVo = gson.toJson(bokVO)
+        editor.putString(key, jsonBookVo)
+        editor.commit()
+
+    }
+    fun getBookVo(context: Context,key:String):BookVO
+    {
+        var gson = Gson()
+        val settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        var json = settings.getString(key, "")
+        val type = object : TypeToken<BookVO>() {}.type
+        return gson.fromJson(json, type)
+    }
+
 }

@@ -121,7 +121,7 @@ class DbHelper(private val mContext: Context) : SQLiteOpenHelper(mContext, DATAB
         return label
     }
 
-    fun getBookTitle(): List<String> {
+    fun getBookTitle(): ArrayList<String> {
         val db = readableDatabase
         var bookList = arrayListOf<String>()
         val cursor = db.rawQuery("SELECT ${DBHelperItem.COLUMN_NAME_BOOK_NAME} FROM ${DBHelperItem.TABLE_NAME}", null)

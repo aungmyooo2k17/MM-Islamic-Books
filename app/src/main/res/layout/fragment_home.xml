@@ -3,22 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.HomeFragment"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    tools:context=".fragment.HomeFragment">
 
 
     <ProgressBar
         android:id="@+id/homeProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/internetStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="No Internet"
-        android:textSize="@dimen/text_regular_3x"
+        android:text="@string/no_internet"
+        android:textSize="@dimen/text_heading_2x"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/internetStatus"
+        android:layout_centerInParent="true"
+        android:background="@drawable/button_border"
+        android:text="@string/retry"
         android:visibility="gone"/>
 
     <EditText
@@ -31,10 +43,10 @@
         android:layout_marginTop="@dimen/margin_medium_2"
         android:background="@drawable/edittext_search_design"
         android:drawableRight="@drawable/ic_search"
-        android:hint="Search"
-        android:padding="@dimen/margin_medium_2"
         android:editable="false"
-        android:elevation="2dp"/>
+        android:elevation="2dp"
+        android:hint="Search"
+        android:padding="@dimen/margin_medium_2" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -42,7 +54,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/edt_search"
         android:layout_marginLeft="@dimen/margin_medium_2"
-        android:layout_marginRight="@dimen/margin_medium_2"/>
+        android:layout_marginRight="@dimen/margin_medium_2" />
 
 
 </RelativeLayout>
