@@ -14,24 +14,44 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/internetStatus"
+    <LinearLayout
+        android:id="@+id/layoutRetry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/no_internet"
-        android:textSize="@dimen/text_heading_2x"
-        android:visibility="gone"/>
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/text_regular_3x"
+        android:paddingRight="@dimen/text_regular_3x"
+        android:visibility="gone"
+        android:clickable="true">
 
-    <Button
-        android:id="@+id/btn_retry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/internetStatus"
-        android:layout_centerInParent="true"
-        android:background="@drawable/button_border"
-        android:text="@string/retry"
-        android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/noSignal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_signal_wifi_off_24dp" />
+
+        <TextView
+            android:id="@+id/internetStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_internet"
+            android:textSize="@dimen/text_regular_3x"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/retryStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/internetStatus"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/text_regular"
+            android:drawableLeft="@drawable/ic_retry_24dp"
+            android:text="@string/retry" />
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/edt_search"

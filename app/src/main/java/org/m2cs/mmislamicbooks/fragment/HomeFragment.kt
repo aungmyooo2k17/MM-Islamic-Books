@@ -1,23 +1,17 @@
 package org.m2cs.mmislamicbooks.fragment
 
 
-import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.app.ActivityOptionsCompat.makeSceneTransitionAnimation
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.soe_than.pdftesting.utilities.Utils
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.example.soe_than.pdftesting.utilities.Utility
 import kotlinx.android.synthetic.main.fragment_home.view.*
-import kotlinx.android.synthetic.main.home_content_view.*
 import org.greenrobot.eventbus.EventBus
 
 import org.m2cs.mmislamicbooks.R
@@ -26,10 +20,10 @@ import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.model.Books
 import org.greenrobot.eventbus.ThreadMode
 import org.greenrobot.eventbus.Subscribe
-import org.m2cs.mmislamicbooks.R.id.iv_book_detail_cover
 import org.m2cs.mmislamicbooks.activity.BookDetailActivity
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
 import org.m2cs.mmislamicbooks.events.DataEvents
+import org.m2cs.mmislamicbooks.models.BookModel
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -55,10 +49,10 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_home, container,
+        var view: View = inflater.inflate(R.layout.fragment_home, container,
                 false)
 
-        var isConnected = Utils.checkConnectivity(context!!)
+        var isConnected = Utility.checkConnectivity(context!!)
 
 
         if (isConnected) {
@@ -68,8 +62,8 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
 
         }
 
-        view.btn_retry.setOnClickListener({
-            recheckInternet(it)
+        view.layoutRetry.setOnClickListener({
+            recheckInternet()
         })
 
 
@@ -91,13 +85,23 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
     }
 
     fun getConnected(view: View) {
+
+        Log.i("HomeFragCheck", view.recyclerView.visibility.toString())
+        BookModel.getsObjectInstance().loadBook()
+        view.layoutRetry.visibility = View.GONE
+        view.recyclerView.visibility = View.VISIBLE
+
+
+
         setUpRecyclerView(view)
+
     }
 
     fun noConnection(view: View) {
         view.recyclerView.visibility = View.GONE
-        view.internetStatus.visibility = View.VISIBLE
-        view.btn_retry.visibility = View.VISIBLE
+        view.layoutRetry.visibility = View.VISIBLE
+//        view.internetStatus.visibility = View.VISIBLE
+//        view.btn_retry.visibility = View.VISIBLE
     }
 
     private fun setUpRecyclerView(view: View) {
@@ -131,8 +135,15 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
         context!!.startActivity(intent)
     }
 
-    fun recheckInternet(view: View) {
-        if (Utils.checkConnectivity(context!!)) getConnected(view) else noConnection(view)
+    fun recheckInternet() {
+        if (Utility.checkConnectivity(context!!)) {
+            getConnected(view!!)
+            Log.i("HomeCheck", "onConnected")
+        } else {
+
+            noConnection(view!!)
+            Log.i("HomeCheck", "No")
+        }
     }
 
 }

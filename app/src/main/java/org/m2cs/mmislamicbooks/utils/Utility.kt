@@ -17,10 +17,9 @@ import android.net.NetworkInfo
 import android.os.Environment
 import java.io.File
 import java.io.StreamTokenizer
-import java.util.*
 
 
-class Utils {
+class Utility {
 
     companion object {
         @SuppressLint("RestrictedApi")

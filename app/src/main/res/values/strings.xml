@@ -9,8 +9,8 @@
     <string name="read">Read</string>
     <string name="delete">Delete</string>
 
-    <string name="no_internet">No Internet</string>
-    <string name="retry">Retry</string>
+    <string name="no_internet">No Connection</string>
+    <string name="retry">Tap to Retry</string>
 
     <string name="similar_books">Similar Books</string>
 

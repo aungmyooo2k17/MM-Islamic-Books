@@ -2,25 +2,18 @@ package org.m2cs.mmislamicbooks.fragment
 
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
-import android.os.FileObserver
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.soe_than.pdftesting.utilities.Utils
-import kotlinx.android.synthetic.main.fragment_category.view.*
+import com.example.soe_than.pdftesting.utilities.Utility
 import kotlinx.android.synthetic.main.fragment_downloads.view.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
 
 import org.m2cs.mmislamicbooks.R
 import org.m2cs.mmislamicbooks.activity.PdfReaderActivity
 import org.m2cs.mmislamicbooks.adapter.DownloadAdapter
-import org.m2cs.mmislamicbooks.adapter.HomeFragAdapter
 import org.m2cs.mmislamicbooks.data.vo.DownloadVO
 import org.m2cs.mmislamicbooks.database.DbHelper
 import org.m2cs.mmislamicbooks.delegates.DownloadItemDelegate
@@ -84,7 +77,7 @@ class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
         var view = inflater.inflate(R.layout.fragment_downloads, container, false)
         setUpRecyclerView(view)
         mDatabase = DbHelper(context!!)
-        fileNameList = Utils.getListFile()
+        fileNameList = Utility.getListFile()
         mDatabase.getBookTitle()
 //        if (fileNameList.size != 0) {
 //            checkFilePath(fileNameList, mDatabase.getBookTitle())
