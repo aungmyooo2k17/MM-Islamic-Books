@@ -14,8 +14,8 @@ import android.util.Log
 
 
 class AboutActivity : AppCompatActivity() {
-    var FACEBOOK_URL = ""
-    var FACEBOOK_PAGE_ID = ""
+    var FACEBOOK_URL = "https://www.facebook.com/M2CS-179991619396541"
+    var FACEBOOK_PAGE_ID = "M2CS-179991619396541"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
