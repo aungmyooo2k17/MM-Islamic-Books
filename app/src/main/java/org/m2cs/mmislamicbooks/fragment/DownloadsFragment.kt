@@ -35,8 +35,7 @@ class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
     }
 
     lateinit var mDatabase: DbHelper
-    var fileNameList = arrayListOf<String>()
-    var mdownloadVo = null
+
 
     override fun onTapDelete(downloadVo: DownloadVO, adapterPosition: Int) {
         val builder = AlertDialog.Builder(activity)
@@ -66,10 +65,6 @@ class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
         fun newInstance(): DownloadsFragment = DownloadsFragment()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        observer.startWatching()
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -77,12 +72,6 @@ class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
         var view = inflater.inflate(R.layout.fragment_downloads, container, false)
         setUpRecyclerView(view)
         mDatabase = DbHelper(context!!)
-        fileNameList = Utility.getListFile()
-        mDatabase.getBookTitle()
-//        if (fileNameList.size != 0) {
-//            checkFilePath(fileNameList, mDatabase.getBookTitle())
-//
-//        }
         return view
     }
 
@@ -93,18 +82,6 @@ class DownloadsFragment : BaseFragment(), DownloadItemDelegate {
         view.downloadRecyclerView.adapter = downloadAdapter
     }
 
-
-//    fun checkFilePath(fileList: ArrayList<String>, downloadList: ArrayList<String>) {
-//        for (fileItem in fileList) {
-//            for (downloadItem in downloadList) {
-//                if (downloadItem.equals(fileItem)) {
-//                    downloadAdapter.removeItemFromDb()
-//
-//                }
-//            }
-//        }
-//
-//    }
 
 
 }

@@ -30,4 +30,6 @@
     <dimen name="text_big">42sp</dimen>
     <dimen name="text_big_2x">60sp</dimen>
     <dimen name="text_big_3x">80sp</dimen>
+
+    <dimen name="spacing_large">16dp</dimen>
 </resources>

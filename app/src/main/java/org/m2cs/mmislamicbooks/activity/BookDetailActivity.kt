@@ -167,10 +167,17 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
     }
 
     fun downloadFiles() {
-        val direct = File(Environment.getExternalStorageDirectory().toString() + "/${getString(R.string.app_name)}")
-        if (!direct.exists()) {
+//        val direct = File(Environment.getExternalStorageDirectory().toString() + "/${getString(R.string.app_name)}")
+//        if (!direct.exists()) {
+//            direct.mkdirs()
+//        }
+        val direct = File(filesDir,"/${getString(R.string.app_name)}")
+        if(!direct.exists())
+        {
             direct.mkdirs()
         }
+
+
 
         val uri = Uri.parse(stringUrl)
         val request = DownloadManager.Request(uri)

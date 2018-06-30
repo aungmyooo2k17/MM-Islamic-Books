@@ -16,7 +16,7 @@ import org.m2cs.mmislamicbooks.models.BookModel
 import org.m2cs.mmislamicbooks.models.CategoryModel
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.ActivityOptionsCompat
-
+import android.view.View
 
 
 class MainActivity : AppCompatActivity(), BookMainDelegate {
@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity(), BookMainDelegate {
         Utility.disableShiftMode(navigationView)
         BookModel.getsObjectInstance().loadBook()
         CategoryModel.getObjectInstance().loadCategory()
+        toAbout.setOnClickListener(View.OnClickListener {
+            intent = Intent(this,AboutActivity::class.java)
+            startActivity(intent)
+        })
 //        AuthorModel.getsObjectInstance().loadAuthor()
     }
 
@@ -77,7 +81,7 @@ class MainActivity : AppCompatActivity(), BookMainDelegate {
 
     override fun onTapBook(bookVO: BookVO) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-           
+
         } else {
             // Swap without transition
         }
