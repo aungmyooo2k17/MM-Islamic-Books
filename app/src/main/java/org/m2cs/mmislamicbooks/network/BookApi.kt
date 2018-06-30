@@ -10,7 +10,7 @@ import retrofit2.http.GET
 
 interface BookApi {
     @GET(AppConstants.BOOK_LIST)
-    fun loadQuestion(): Observable<BookListResponse>
+    fun loadBook(): Observable<BookListResponse>
 
     @GET(AppConstants.AUTHOR_LIST)
     fun loadAuthor(): Observable<AuthorListResponse>

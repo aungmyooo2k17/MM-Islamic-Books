@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.ActivityOptionsCompat.makeSceneTransitionAnimation
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ import org.greenrobot.eventbus.ThreadMode
 import org.greenrobot.eventbus.Subscribe
 import org.m2cs.mmislamicbooks.R.id.iv_book_detail_cover
 import org.m2cs.mmislamicbooks.activity.BookDetailActivity
+import org.m2cs.mmislamicbooks.activity.BookSearchActivity
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
 import org.m2cs.mmislamicbooks.events.DataEvents
 
@@ -44,6 +46,7 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
     val books: ArrayList<Books> = ArrayList()
 
     public lateinit var mHomeAdapter: HomeFragAdapter
+
     companion object {
         fun newInstance(): HomeFragment = HomeFragment()
     }
@@ -56,6 +59,11 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
         initializedArray()
 
         setUpRecyclerView(view)
+
+        view.edt_search.setOnClickListener(View.OnClickListener {
+            var intent: Intent = BookSearchActivity.newIntent(activity)
+            startActivity(intent)
+        })
 
 
 

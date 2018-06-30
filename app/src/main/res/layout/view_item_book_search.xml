@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/margin_medium">
+
+    <ImageView
+        android:id="@+id/iv_book_item"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_close"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/margin_medium_2"/>
+
+    <TextView
+        android:id="@+id/tv_book_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample Book Name Here"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/iv_book_item"
+        android:textSize="@dimen/text_regular"
+        android:textColor="@color/secondaryText"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginEnd="@dimen/margin_medium_2"/>
+
+    <View
+        android:id="@+id/view_search_list_item_divider"
+        android:background="@color/bottomNavigationItemUnCheckColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_book_item_title"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginEnd="@dimen/margin_medium_2"/>
+
+</RelativeLayout>
