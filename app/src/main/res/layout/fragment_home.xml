@@ -3,8 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.HomeFragment"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    tools:context=".fragment.HomeFragment">
+
+
+    <ProgressBar
+        android:id="@+id/homeProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/layoutRetry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/text_regular_3x"
+        android:paddingRight="@dimen/text_regular_3x"
+        android:visibility="gone"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/noSignal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_signal_wifi_off_24dp" />
+
+        <TextView
+            android:id="@+id/internetStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_internet"
+            android:textSize="@dimen/text_regular_3x"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/retryStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/internetStatus"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/text_regular"
+            android:drawableLeft="@drawable/ic_retry_24dp"
+            android:text="@string/retry" />
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/edt_search"
@@ -16,10 +63,10 @@
         android:layout_marginTop="@dimen/margin_medium_2"
         android:background="@drawable/edittext_search_design"
         android:drawableRight="@drawable/ic_search"
-        android:hint="Search"
-        android:padding="@dimen/margin_medium_2"
         android:editable="false"
-        android:elevation="2dp"/>
+        android:elevation="2dp"
+        android:hint="Search"
+        android:padding="@dimen/margin_medium_2" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -27,7 +74,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/edt_search"
         android:layout_marginLeft="@dimen/margin_medium_2"
-        android:layout_marginRight="@dimen/margin_medium_2"/>
+        android:layout_marginRight="@dimen/margin_medium_2" />
 
 
 </RelativeLayout>

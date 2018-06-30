@@ -7,6 +7,6 @@
     <stroke
         android:width="3dp"
         android:color="@color/colorAccent" />
-    <corners android:radius="@dimen/margin_card_medium_2"/>
+    <corners android:radius="0dp"/>
 
 </shape>

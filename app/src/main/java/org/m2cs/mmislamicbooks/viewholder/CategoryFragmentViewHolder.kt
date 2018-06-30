@@ -13,6 +13,7 @@ import org.m2cs.mmislamicbooks.model.Category
 
 class CategoryFragmentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+//    private val tvTitle = itemView.categoryTitle
     private val tvTitle = itemView.categoryTitle
     private val tvBookCount = itemView.totalBooksCat
     private val imgThumbnail = itemView.categoryImage

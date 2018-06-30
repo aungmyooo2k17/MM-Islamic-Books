@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -35,12 +34,13 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/toAbout"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/margin_medium_2"
-                    android:src="@drawable/ic_settings" />
+                    android:src="@drawable/ic_more" />
 
             </RelativeLayout>
 
@@ -52,19 +52,19 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appBarLayout"
-        android:layout_above="@id/navigationView"/>
+        android:layout_above="@id/navigationView"
+        android:layout_below="@id/appBarLayout" />
 
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
         android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
         app:itemBackground="@color/colorPrimary"
-        app:itemTextColor="@color/bottom_nav_color"
         app:itemIconTint="@color/bottom_nav_color"
-        app:menu="@menu/navigation_menu"/>
+        app:itemTextColor="@color/bottom_nav_color"
+        app:menu="@menu/navigation_menu" />
 
 </RelativeLayout>
