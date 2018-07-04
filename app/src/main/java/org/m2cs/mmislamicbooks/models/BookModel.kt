@@ -12,7 +12,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
-import org.m2cs.mmislamicbooks.data.vo.CategoryVO
 import org.m2cs.mmislamicbooks.events.DataEvents
 
 class BookModel private constructor() : BaseModel() {
@@ -25,7 +24,7 @@ class BookModel private constructor() : BaseModel() {
     }
 
     fun loadBook() {
-        val personListResponseObservable = theApi.loadQuestion()
+        val personListResponseObservable = theApi.loadBook()
 
         personListResponseObservable
                 .subscribeOn(Schedulers.io())

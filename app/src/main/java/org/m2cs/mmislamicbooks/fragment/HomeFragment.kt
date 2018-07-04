@@ -21,6 +21,7 @@ import org.m2cs.mmislamicbooks.model.Books
 import org.greenrobot.eventbus.ThreadMode
 import org.greenrobot.eventbus.Subscribe
 import org.m2cs.mmislamicbooks.activity.BookDetailActivity
+import org.m2cs.mmislamicbooks.activity.BookSearchActivity
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
 import org.m2cs.mmislamicbooks.events.DataEvents
 import org.m2cs.mmislamicbooks.models.BookModel
@@ -71,6 +72,11 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
 
         initializedArray()
 
+
+        view.edt_search.setOnClickListener(View.OnClickListener {
+            var intent: Intent = BookSearchActivity.newIntent(activity)
+            startActivity(intent)
+        })
 
 
 
