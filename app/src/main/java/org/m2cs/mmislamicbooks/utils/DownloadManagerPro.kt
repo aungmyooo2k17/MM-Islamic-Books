@@ -188,12 +188,12 @@ class DownloadManagerPro(downloadManager: DownloadManager) {
         var c: Cursor? = null
         try {
             c = downloadManager!!.query(query)
-            if (c != null && c!!.moveToFirst()) {
-                result = c!!.getInt(c!!.getColumnIndex(columnName))
+            if (c != null && c.moveToFirst()) {
+                result = c.getInt(c.getColumnIndex(columnName))
             }
         } finally {
             if (c != null) {
-                c!!.close()
+                c.close()
             }
         }
         return result

@@ -22,7 +22,7 @@ class DownloadAdapter(val context: Context?, val mDownloadItemDelegate: Download
 
     private val LOG_TAG = "FileViewerAdapter"
 
-    lateinit var mDatabase: DbHelper
+    var mDatabase: DbHelper
 
      lateinit var mDownloadVo: DownloadVO
 

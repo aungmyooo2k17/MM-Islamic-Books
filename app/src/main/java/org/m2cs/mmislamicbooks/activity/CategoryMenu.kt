@@ -7,9 +7,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_category_menu.*
 import org.m2cs.mmislamicbooks.R
-import org.m2cs.mmislamicbooks.adapter.HomeFragAdapter
-import org.m2cs.mmislamicbooks.model.Books
-import org.m2cs.mmislamicbooks.model.Category
+import org.m2cs.mmislamicbooks.data.model.Category
 
 class CategoryMenu : AppCompatActivity() {
 
@@ -19,7 +17,6 @@ class CategoryMenu : AppCompatActivity() {
 
         @JvmStatic fun getIntent(context: Context, category: Category): Intent {
             val intent = Intent(context, CategoryMenu::class.java)
-            intent.putExtra(CATEGORY_KEY,category)
             return intent
         }
     }
@@ -31,10 +28,10 @@ class CategoryMenu : AppCompatActivity() {
         setSupportActionBar(catmenuToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val category = intent.getParcelableExtra<Category>(CategoryMenu.CATEGORY_KEY)
-
-        catmenuToolbar.title=category.categoryTitle
-        catmenuToolbar.setTitleTextColor(resources.getColor(R.color.primaryText))
+//        val category = intent.getParcelableExtra<Category>(CategoryMenu.CATEGORY_KEY)
+//
+//        catmenuToolbar.title=category.categoryTitle
+//        catmenuToolbar.setTitleTextColor(resources.getColor(R.color.primaryText))
     }
 
 

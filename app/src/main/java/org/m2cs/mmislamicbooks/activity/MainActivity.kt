@@ -1,5 +1,7 @@
 package org.m2cs.mmislamicbooks.activity
 
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -14,21 +16,23 @@ import org.m2cs.mmislamicbooks.delegates.BookMainDelegate
 import org.m2cs.mmislamicbooks.fragment.*
 import org.m2cs.mmislamicbooks.models.BookModel
 import org.m2cs.mmislamicbooks.models.CategoryModel
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
 import android.view.View
+import org.m2cs.mmislamicbooks.viewmodels.BookViewModel
 
 
 class MainActivity : AppCompatActivity(), BookMainDelegate {
 
+    private lateinit var bookViewModel: BookViewModel
+    private lateinit var factory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
-
         openFragment(HomeFragment.newInstance())
+
+        bookViewModel = ViewModelProviders.of(this).get(BookViewModel::class.java)
 
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         Utility.disableShiftMode(navigationView)

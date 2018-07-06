@@ -62,7 +62,7 @@ class Utility {
         fun getListFile(): ArrayList<String> {
             var filesList = arrayListOf<String>()
             var root = Environment.getExternalStorageDirectory().toString()
-            var file = File(root, "/MM Islamic Books")
+            var file = File(root, "/MM Islamic Book")
             var fileList = file.listFiles()
 
             for (i in fileList) {

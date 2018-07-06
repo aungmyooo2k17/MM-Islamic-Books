@@ -5,10 +5,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import org.m2cs.mmislamicbooks.R
-import org.m2cs.mmislamicbooks.model.Books
-import org.m2cs.mmislamicbooks.model.Category
+import org.m2cs.mmislamicbooks.data.model.Category
 import org.m2cs.mmislamicbooks.viewholder.CategoryFragmentViewHolder
-import org.m2cs.mmislamicbooks.viewholder.HomeFragViewHolder
 
 class CategoryFragAdapter( val context: Context?): RecyclerView.Adapter<CategoryFragmentViewHolder>() {
 

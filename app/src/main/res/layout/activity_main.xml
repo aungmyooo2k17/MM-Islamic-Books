@@ -35,18 +35,15 @@
 
                 <ImageView
                     android:id="@+id/toAbout"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/margin_medium_2"
-                    android:src="@drawable/ic_more" />
-
+                    android:src="@drawable/ic_info" />
             </RelativeLayout>
-
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-
 
     <FrameLayout
         android:id="@+id/container"
@@ -54,7 +51,6 @@
         android:layout_height="match_parent"
         android:layout_above="@id/navigationView"
         android:layout_below="@id/appBarLayout" />
-
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationView"

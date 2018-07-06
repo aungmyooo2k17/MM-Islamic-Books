@@ -16,16 +16,16 @@ class HomeFragViewHolder(itemView: View,val mBooksItemDelegate: BooksItemDelegat
     val context: Context = itemView.context
 
 
-//    private lateinit var mBook: Books
+//    private lateinit var mBook: Book
 
 
     /*
-    fun bind(book: Books) {
+    fun bind(book: Book) {
         mBook = book
 
         tvAuthor.text=book.authorName
         tvTitle.text=book.bookName
-        Glide.with(itemView.context).load(book.imageLink).into(imgThumbnail)
+        Glide.with(itemView.context).load(book.bookCover).into(imgThumbnail)
         imgThumbnail.setOnClickListener{
 
             context.startActivity(BookDetailActivity.newIntent(context, book))        }

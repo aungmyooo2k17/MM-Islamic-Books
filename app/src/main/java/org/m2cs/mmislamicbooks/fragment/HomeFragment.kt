@@ -1,11 +1,13 @@
 package org.m2cs.mmislamicbooks.fragment
 
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +19,7 @@ import org.greenrobot.eventbus.EventBus
 import org.m2cs.mmislamicbooks.R
 import org.m2cs.mmislamicbooks.adapter.HomeFragAdapter
 import org.m2cs.mmislamicbooks.data.vo.BookVO
-import org.m2cs.mmislamicbooks.model.Books
+import org.m2cs.mmislamicbooks.data.model.Book
 import org.greenrobot.eventbus.ThreadMode
 import org.greenrobot.eventbus.Subscribe
 import org.m2cs.mmislamicbooks.activity.BookDetailActivity
@@ -25,6 +27,7 @@ import org.m2cs.mmislamicbooks.activity.BookSearchActivity
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
 import org.m2cs.mmislamicbooks.events.DataEvents
 import org.m2cs.mmislamicbooks.models.BookModel
+import org.m2cs.mmislamicbooks.viewmodels.BookViewModel
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,9 +42,10 @@ private const val ARG_PARAM2 = "param2"
 class HomeFragment : BaseFragment(), BooksItemDelegate {
 
 
-    val books: ArrayList<Books> = ArrayList()
+    val books: ArrayList<Book> = ArrayList()
+    private lateinit var bookViewModel: BookViewModel
+    lateinit var mHomeAdapter: HomeFragAdapter
 
-    public lateinit var mHomeAdapter: HomeFragAdapter
 
     companion object {
         fun newInstance(): HomeFragment = HomeFragment()
@@ -52,6 +56,9 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
         // Inflate the layout for this fragment
         var view: View = inflater.inflate(R.layout.fragment_home, container,
                 false)
+
+
+
 
         var isConnected = Utility.checkConnectivity(context!!)
 
@@ -70,9 +77,6 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
 
 
 
-        initializedArray()
-
-
         view.edt_search.setOnClickListener(View.OnClickListener {
             var intent: Intent = BookSearchActivity.newIntent(activity)
             startActivity(intent)
@@ -83,12 +87,7 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
         return view
     }
 
-    private fun initializedArray() {
-        for (i in 1..15) {
-            books.add(Books())
-        }
 
-    }
 
     fun getConnected(view: View) {
 
@@ -132,6 +131,10 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onQuestionLoaded(event: DataEvents.BookLoadedEvent) {
         mHomeAdapter.setNewData(event.bookList as MutableList<BookVO>)
+        for(book: BookVO in event.bookList){
+//            val bookVM = Book(book.bookId, book.bookName, book.bookSubTitle, book.bookDesc, book.bookCover, book.bookDetailCover, book.authorId, book.bookDownloadLink, book.categoryId)
+//            bookViewModel.insert(bookVM)
+        }
     }
 
 

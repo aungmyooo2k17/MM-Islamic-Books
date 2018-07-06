@@ -42,7 +42,7 @@ class PdfReaderActivity : AppCompatActivity(), OnPageChangeListener {
 
 
         if (savedInstanceState != null) {
-            pageIndex = savedInstanceState?.getInt("pageIndex")!!
+            pageIndex = savedInstanceState.getInt("pageIndex")
 
         }
 

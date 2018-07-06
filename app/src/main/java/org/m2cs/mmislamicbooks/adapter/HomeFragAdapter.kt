@@ -10,7 +10,7 @@ import org.m2cs.mmislamicbooks.viewholder.HomeFragViewHolder
 
 class HomeFragAdapter(val context: Context?, val mBooksItemDelegate: BooksItemDelegate) : BaseRecyclerAdapter<HomeFragViewHolder, BookVO>(context!!) {
 
-//    val mBookList: ArrayList<Books> = ArrayList()
+//    val mBookList: ArrayList<Book> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeFragViewHolder {
         val view = mLayoutInflater.inflate(R.layout.home_content_view, parent, false)
@@ -26,7 +26,7 @@ class HomeFragAdapter(val context: Context?, val mBooksItemDelegate: BooksItemDe
         holder.bind(mData!!.get(position))
     }
 
-//    fun replaceData(testList: List<Books>) {
+//    fun replaceData(testList: List<Book>) {
 //        mBookList.clear()
 //        mBookList.addAll(testList)
 //        notifyDataSetChanged()

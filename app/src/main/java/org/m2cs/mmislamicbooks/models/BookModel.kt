@@ -13,6 +13,9 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import org.m2cs.mmislamicbooks.events.DataEvents
+import android.R.attr.data
+import org.m2cs.mmislamicbooks.data.model.Book
+
 
 class BookModel private constructor() : BaseModel() {
     private var mBooks: Map<String, BookVO>
@@ -42,7 +45,10 @@ class BookModel private constructor() : BaseModel() {
                         mBooks = HashMap()
 
                         for (book : BookVO in bookListResponse.getBooks!!){
-                            (mBooks as HashMap<String, BookVO>).put(book.bookId!!, book)
+                            (mBooks as HashMap<String, BookVO>).put(book.bookId, book)
+
+
+
                         }
 
 

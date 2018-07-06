@@ -7,7 +7,6 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
 import com.bumptech.glide.Glide
@@ -17,29 +16,22 @@ import org.m2cs.mmislamicbooks.adapter.HomeFragAdapter
 import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.data.vo.CategoryVO
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
-import org.m2cs.mmislamicbooks.model.Books
+import org.m2cs.mmislamicbooks.data.model.Book
 import org.m2cs.mmislamicbooks.models.BookModel
-import org.m2cs.mmislamicbooks.models.CategoryModel
 import org.m2cs.mmislamicbooks.utils.DownloadManagerPro
 import org.m2cs.mmislamicbooks.utils.PreferencesUtils
 import java.io.File
 import android.content.pm.PackageManager
-import android.Manifest.permission
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.support.v4.content.ContextCompat
 import android.support.v4.app.ActivityCompat
-import android.content.BroadcastReceiver
-import android.content.IntentFilter
 import android.database.ContentObserver
 import android.os.Handler
 import android.os.Message
 import android.util.Log
 import android.view.View
 import android.widget.*
-import butterknife.BindView
 import butterknife.ButterKnife
 import org.m2cs.mmislamicbooks.App.Companion.downIds
-import org.m2cs.mmislamicbooks.R.id.*
 import org.m2cs.mmislamicbooks.database.DbHelper
 import org.m2cs.mmislamicbooks.utils.DownloadUtils.getBookSize
 import org.m2cs.mmislamicbooks.utils.DownloadUtils.getNotiPercent
@@ -49,7 +41,7 @@ import org.m2cs.mmislamicbooks.utils.DownloadUtils.isDownloading
 class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
 
 
-    val books: ArrayList<Books> = ArrayList()
+    val books: ArrayList<Book> = ArrayList()
     private lateinit var mHomeAdapter: HomeFragAdapter
     lateinit var categoryVO: CategoryVO
     lateinit var downloadManager: DownloadManager
@@ -116,7 +108,7 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
         rv_similar_book.adapter = mHomeAdapter
         rv_similar_book.isNestedScrollingEnabled = false
         rv_similar_book.setFocusable(false);
-        mHomeAdapter.setNewData(BookModel.getsObjectInstance().getBookByCategoryId(bookVO.categoryId!!) as MutableList<BookVO>)
+        mHomeAdapter.setNewData(BookModel.getsObjectInstance().getBookByCategoryId(bookVO.categoryId) as MutableList<BookVO>)
         handler = MyHandler(btn_cancel, btn_download, tv_download_percent, tv_download_size, btn_progress)
         downloadManager = this.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
 
@@ -189,7 +181,7 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
         request.setTitle(bookVO.bookName)
                 .setDescription("Downloading")
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                .setDestinationInExternalPublicDir("/MM Islamic Books", mFileName)
+                .setDestinationInExternalPublicDir("/MM Islamic Book", mFileName)
                 .setVisibleInDownloadsUi(true)
         downloadId = downloadManager.enqueue(request)
         downIds.add(downloadId)
@@ -257,7 +249,7 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
 
             when (msg!!.what) {
                 0 -> {
-                    val status = msg!!.obj as Int
+                    val status = msg.obj as Int
                     if (isDownloading(status)) {
                         mProgressbar.setVisibility(View.VISIBLE)
                         mProgressbar.setMax(0)

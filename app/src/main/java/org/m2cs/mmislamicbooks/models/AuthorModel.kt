@@ -39,7 +39,6 @@ class AuthorModel private constructor() : BaseModel() {
                 })
     }
 
-
     companion object {
         private var sObjInstance: AuthorModel? = null
 
