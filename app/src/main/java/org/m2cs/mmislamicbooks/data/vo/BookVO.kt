@@ -1,36 +1,39 @@
 package org.m2cs.mmislamicbooks.data.vo
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+import android.support.annotation.NonNull
 import com.google.gson.annotations.SerializedName
 
 
+class BookVO {
 
-class BookVO{
     @SerializedName("book_id")
-     var bookId: String = ""
+    var bookId: String = ""
 
     @SerializedName("book_name")
-     var bookName: String = ""
+    var bookName: String = ""
 
     @SerializedName("book_cover")
-     var bookCover: String = ""
+    var bookCover: String = ""
 
     @SerializedName("book_detail_cover")
-     var bookDetailCover: String = ""
+    var bookDetailCover: String = ""
 
     @SerializedName("book_sub_title")
-     var bookSubTitle: String = ""
-
+    var bookSubTitle: String = ""
     @SerializedName("book_desc")
-     var bookDesc: String = ""
+    var bookDesc: String = ""
 
     @SerializedName("book_download_link")
-     var bookDownloadLink: String = ""
+    var bookDownloadLink: String = ""
 
     @SerializedName("author_id")
-     var authorId: String = ""
+    var authorId: String = ""
 
     @SerializedName("category_id")
-     var categoryId: String = ""
+    var categoryId: String = ""
 
 
 }

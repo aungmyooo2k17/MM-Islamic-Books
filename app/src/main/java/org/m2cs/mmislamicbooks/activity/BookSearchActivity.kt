@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import kotlinx.android.synthetic.main.activity_book_search.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -45,6 +46,10 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
         mBookSearchAdapter = BookSearchAdapter(this, this)
         rvBookSearch.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvBookSearch.adapter = mBookSearchAdapter
+
+        iv_search_close_btn.setOnClickListener(View.OnClickListener {
+            finish()
+        })
 
 
 

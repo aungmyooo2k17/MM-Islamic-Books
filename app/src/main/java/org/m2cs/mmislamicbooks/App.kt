@@ -11,6 +11,11 @@ import org.m2cs.mmislamicbooks.database.DbHelper
 import org.m2cs.mmislamicbooks.models.BookModel
 import org.m2cs.mmislamicbooks.receiver.DownloadCompleteReceiver
 import java.io.File
+import android.graphics.Typeface
+import android.R.attr.typeface
+import android.content.res.AssetManager
+import java.util.*
+
 
 class App : Application() {
 
@@ -29,6 +34,11 @@ class App : Application() {
             file.delete()
         }
 
+        val am = this.applicationContext.assets
+
+         typeface = Typeface.createFromAsset(am,
+                String.format(Locale.US, "fonts/%s", "ZawgyiOne.ttf"))
+
 
     }
 
@@ -38,5 +48,6 @@ class App : Application() {
         var TAG = "MMISLAMICBOOK"
         var globalBookList: List<BookVO>? = ArrayList<BookVO>()
         var downIds = arrayListOf<Long>()
+         var typeface:Typeface? = null
     }
 }

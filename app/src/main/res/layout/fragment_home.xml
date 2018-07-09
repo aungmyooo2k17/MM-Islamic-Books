@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone" />
+       />
 
     <LinearLayout
         android:id="@+id/layoutRetry"
@@ -66,7 +66,9 @@
         android:editable="false"
         android:elevation="2dp"
         android:hint="Search"
-        android:padding="@dimen/margin_medium_2" />
+        android:padding="@dimen/margin_medium_2"
+        android:transitionName="ivSearch"
+        tools:ignore="UnusedAttribute"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

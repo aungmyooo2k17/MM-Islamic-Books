@@ -16,7 +16,6 @@ import org.m2cs.mmislamicbooks.adapter.HomeFragAdapter
 import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.data.vo.CategoryVO
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
-import org.m2cs.mmislamicbooks.data.model.Book
 import org.m2cs.mmislamicbooks.models.BookModel
 import org.m2cs.mmislamicbooks.utils.DownloadManagerPro
 import org.m2cs.mmislamicbooks.utils.PreferencesUtils
@@ -41,7 +40,7 @@ import org.m2cs.mmislamicbooks.utils.DownloadUtils.isDownloading
 class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
 
 
-    val books: ArrayList<Book> = ArrayList()
+//    val books: ArrayList<Book> = ArrayList()
     private lateinit var mHomeAdapter: HomeFragAdapter
     lateinit var categoryVO: CategoryVO
     lateinit var downloadManager: DownloadManager

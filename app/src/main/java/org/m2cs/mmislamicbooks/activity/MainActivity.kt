@@ -17,13 +17,13 @@ import org.m2cs.mmislamicbooks.fragment.*
 import org.m2cs.mmislamicbooks.models.BookModel
 import org.m2cs.mmislamicbooks.models.CategoryModel
 import android.view.View
-import org.m2cs.mmislamicbooks.viewmodels.BookViewModel
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class MainActivity : AppCompatActivity(), BookMainDelegate {
 
-    private lateinit var bookViewModel: BookViewModel
-    private lateinit var factory: ViewModelProvider.Factory
+//    private lateinit var bookViewModel: BookViewModel
+//    private lateinit var factory: ViewModelProvider.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity(), BookMainDelegate {
         setSupportActionBar(toolbar)
         openFragment(HomeFragment.newInstance())
 
-        bookViewModel = ViewModelProviders.of(this).get(BookViewModel::class.java)
 
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         Utility.disableShiftMode(navigationView)
@@ -42,7 +41,8 @@ class MainActivity : AppCompatActivity(), BookMainDelegate {
             intent = Intent(this,AboutActivity::class.java)
             startActivity(intent)
         })
-//        AuthorModel.getsObjectInstance().loadAuthor()
+
+
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->

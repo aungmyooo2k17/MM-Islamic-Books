@@ -13,9 +13,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import org.m2cs.mmislamicbooks.events.DataEvents
-import android.R.attr.data
-import org.m2cs.mmislamicbooks.data.model.Book
-
+import android.app.Application
 
 class BookModel private constructor() : BaseModel() {
     private var mBooks: Map<String, BookVO>
@@ -29,6 +27,8 @@ class BookModel private constructor() : BaseModel() {
     fun loadBook() {
         val personListResponseObservable = theApi.loadBook()
 
+        Log.i("Retry","Reloading")
+
         personListResponseObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -38,15 +38,16 @@ class BookModel private constructor() : BaseModel() {
                     }
 
                     override fun onNext(bookListResponse: BookListResponse) {
-                        Log.d("Tag", "onNext "+bookListResponse)
+                        Log.d("Tag", "onNext " + bookListResponse)
 
                         bookList = bookListResponse.getBooks!!
+                        Log.i("ReloadingBookModel", "${bookList.get(0).bookName}")
+
 
                         mBooks = HashMap()
 
-                        for (book : BookVO in bookListResponse.getBooks!!){
+                        for (book: BookVO in bookListResponse.getBooks!!) {
                             (mBooks as HashMap<String, BookVO>).put(book.bookId, book)
-
 
 
                         }
@@ -54,9 +55,6 @@ class BookModel private constructor() : BaseModel() {
 
                         var event: DataEvents.BookLoadedEvent = DataEvents.BookLoadedEvent(bookListResponse.getBooks!!)
                         EventBus.getDefault().post(event)
-
-
-
 
 
                     }
@@ -88,9 +86,9 @@ class BookModel private constructor() : BaseModel() {
     }
 
     fun getBookByCategoryId(categoryId: String): List<BookVO> {
-        var mBook:ArrayList<BookVO> = ArrayList<BookVO>()
-        for (book: BookVO in bookList){
-            if(book.categoryId.equals(categoryId)){
+        var mBook: ArrayList<BookVO> = ArrayList<BookVO>()
+        for (book: BookVO in bookList) {
+            if (book.categoryId.equals(categoryId)) {
                 mBook.add(book)
             }
         }
