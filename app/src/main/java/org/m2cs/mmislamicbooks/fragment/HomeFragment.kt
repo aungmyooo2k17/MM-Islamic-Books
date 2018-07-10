@@ -81,6 +81,10 @@ class HomeFragment : BaseFragment(), BooksItemDelegate {
             var intent: Intent = BookSearchActivity.newIntent(activity)
 
             startActivity(intent)
+//            activity!!.overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+
+
+
         })
 
 

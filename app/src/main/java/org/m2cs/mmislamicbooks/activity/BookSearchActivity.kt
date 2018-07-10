@@ -6,7 +6,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import com.mancj.slideup.SlideUp
+import com.mancj.slideup.SlideUpBuilder
 import kotlinx.android.synthetic.main.activity_book_search.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -23,6 +29,7 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
 
 
     public lateinit var mBookSearchAdapter: BookSearchAdapter
+    lateinit var slideUp: SlideUp
 
     override fun onTapBookItem(bookVO: BookVO) {
 
@@ -30,7 +37,8 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
 
     companion object {
 
-        @JvmStatic fun newIntent(context: Context?): Intent {
+        @JvmStatic
+        fun newIntent(context: Context?): Intent {
             val intent = Intent(context, BookSearchActivity::class.java)
 
             return intent
@@ -48,12 +56,12 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
         rvBookSearch.adapter = mBookSearchAdapter
 
         iv_search_close_btn.setOnClickListener(View.OnClickListener {
+          
+
             finish()
+
+
         })
-
-
-
-
 
 
 
@@ -63,7 +71,7 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onQuestionLoaded(event: DataEvents.BookLoadedEvent) {
-        Log.d("TAG", "BOOK LIST SEARCH"+event.bookList.size)
+        Log.d("TAG", "BOOK LIST SEARCH" + event.bookList.size)
         mBookSearchAdapter.setNewData(event.bookList as MutableList<BookVO>)
     }
 
@@ -76,4 +84,7 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
         super.onStop()
         EventBus.getDefault().unregister(this);
     }
+
+
+
 }

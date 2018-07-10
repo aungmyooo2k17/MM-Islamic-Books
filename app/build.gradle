@@ -73,5 +73,7 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     kapt "android.arch.lifecycle:compiler:$lifecycle_version"
 
+    implementation "com.github.mancj:SlideUp-Android:2.2.8"
+
 
 }
