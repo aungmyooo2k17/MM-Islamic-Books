@@ -3,16 +3,11 @@ package org.m2cs.mmislamicbooks.adapter
 import android.content.Context
 import android.view.ViewGroup
 import org.m2cs.mmislamicbooks.R
-import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.data.vo.DownloadVO
-import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
 import org.m2cs.mmislamicbooks.viewholder.DownloadViewHolder
-import org.m2cs.mmislamicbooks.viewholder.HomeFragViewHolder
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Adapter
 import org.m2cs.mmislamicbooks.database.DbHelper
 import org.m2cs.mmislamicbooks.delegates.DownloadItemDelegate
 
@@ -31,7 +26,7 @@ class DownloadAdapter(val context: Context?, val mDownloadItemDelegate: Download
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DownloadViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.download_content, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_item_download_content, parent, false)
 
         return DownloadViewHolder(view, mDownloadItemDelegate)
     }

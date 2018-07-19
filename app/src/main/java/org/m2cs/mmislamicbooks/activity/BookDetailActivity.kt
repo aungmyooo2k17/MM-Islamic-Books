@@ -180,7 +180,7 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
         request.setTitle(bookVO.bookName)
                 .setDescription("Downloading")
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                .setDestinationInExternalPublicDir("/MM Islamic Book", mFileName)
+                .setDestinationInExternalPublicDir("/MM Islamic Books", mFileName)
                 .setVisibleInDownloadsUi(true)
         downloadId = downloadManager.enqueue(request)
         downIds.add(downloadId)

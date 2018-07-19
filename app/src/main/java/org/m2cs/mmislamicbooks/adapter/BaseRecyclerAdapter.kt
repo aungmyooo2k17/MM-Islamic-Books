@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import org.m2cs.mmislamicbooks.viewholder.BaseViewHolder
 
 import java.util.ArrayList
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 abstract class BaseRecyclerAdapter<T : BaseViewHolder<*>, W>(context: Context) : RecyclerView.Adapter<T>() {
 
@@ -55,4 +58,5 @@ abstract class BaseRecyclerAdapter<T : BaseViewHolder<*>, W>(context: Context) :
         mData = ArrayList()
         notifyDataSetChanged()
     }
+
 }

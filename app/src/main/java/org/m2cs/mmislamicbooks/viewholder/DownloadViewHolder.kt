@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Button
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.download_content.view.*
+import kotlinx.android.synthetic.main.view_item_download_content.view.*
 import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.data.vo.DownloadVO
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate

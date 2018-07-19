@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.BookDetailActivity" />
-        <activity android:name=".activity.CategoryMenu" />
+        <activity android:name=".activity.CategoryDetailActivity" />
         <activity android:name=".activity.DownloadDetailActivity" />
         <activity android:name=".activity.PdfReaderActivity" />
 

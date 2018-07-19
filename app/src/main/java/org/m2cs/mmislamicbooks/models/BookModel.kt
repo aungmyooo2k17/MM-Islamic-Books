@@ -95,4 +95,15 @@ class BookModel private constructor() : BaseModel() {
 
         return mBook
     }
+
+    fun getBookByCategoryId(categoryId: String, mBookList: List<BookVO>): List<BookVO> {
+        var mBook: ArrayList<BookVO> = ArrayList<BookVO>()
+        for (book: BookVO in mBookList) {
+            if (book.categoryId.equals(categoryId)) {
+                mBook.add(book)
+            }
+        }
+
+        return mBook
+    }
 }

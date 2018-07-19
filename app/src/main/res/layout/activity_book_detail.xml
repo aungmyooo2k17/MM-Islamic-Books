@@ -11,22 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        android:background="@color/white"
         tools:context=".activity.BookDetailActivity">
 
 
-        <ImageView
-            android:id="@+id/iv_book_detail_cover"
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardViewImage"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:adjustViewBounds="true"
-            android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cover"
-            android:transitionName="ivPoster"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UnusedAttribute" />
+            app:cardElevation="25dp"
+            app:cardPreventCornerOverlap="false">
+
+            <ImageView
+                android:id="@+id/iv_book_detail_cover"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:adjustViewBounds="true"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cover"
+                android:transitionName="ivPoster"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UnusedAttribute" />
+
+        </android.support.v7.widget.CardView>
 
 
         <RelativeLayout
@@ -38,13 +48,14 @@
             android:layout_marginTop="@dimen/margin_medium_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_book_detail_cover">
+            app:layout_constraintTop_toBottomOf="@+id/cardViewImage">
 
             <TextView
                 android:id="@+id/tv_book_title_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_toLeftOf="@id/btn_download"
                 android:text="BookTitle"
                 android:textColor="@color/primaryText"
                 android:textSize="@dimen/text_regular_3x"
@@ -65,15 +76,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="@color/colorAccent"
-                android:textColor="@android:color/white" />
+                android:background="@drawable/button_border"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                android:drawableRight="@drawable/ic_file_download"
+                android:paddingLeft="@dimen/margin_medium"
+                android:paddingRight="@dimen/margin_medium"
+                android:paddingTop="@dimen/margin_medium"
+                android:paddingBottom="@dimen/margin_medium"
+                tools:text="hello"/>
 
             <ImageView
                 android:id="@+id/btn_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@id/btn_download"
+                android:layout_below="@id/tv_book_author_detail"
                 android:layout_marginTop="@dimen/margin_medium_3"
                 android:src="@drawable/ic_close"
                 android:visibility="visible" />
@@ -83,7 +101,7 @@
                 android:id="@+id/tv_download_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btn_download"
+                android:layout_below="@id/tv_book_author_detail"
                 android:layout_marginTop="@dimen/margin_card_medium_2"
                 android:text="3.5Kb/3.5Mb" />
 
@@ -91,7 +109,7 @@
                 android:id="@+id/tv_download_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/btn_download"
+                android:layout_below="@id/tv_book_author_detail"
                 android:layout_marginRight="@dimen/margin_card_medium_2"
                 android:layout_marginTop="@dimen/margin_card_medium_2"
                 android:layout_toLeftOf="@id/btn_cancel"
@@ -118,7 +136,7 @@
             android:layout_marginEnd="@dimen/margin_medium_2"
             android:layout_marginStart="@dimen/margin_medium_2"
             android:layout_marginTop="8dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/dividerColor"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
 
@@ -160,7 +178,7 @@
             android:layout_marginLeft="@dimen/margin_medium_2"
             android:layout_marginRight="@dimen/margin_medium_2"
             android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/dividerColor"
             app:layout_constraintTop_toBottomOf="@+id/tv_book_desc_detail" />
 
         <TextView

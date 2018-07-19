@@ -3,7 +3,7 @@ package org.m2cs.mmislamicbooks.viewholder
 import android.content.Context
 import android.view.View
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.home_content_view.view.*
+import kotlinx.android.synthetic.main.view_item_home_content.view.*
 import org.m2cs.mmislamicbooks.App
 import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate

@@ -1,34 +1,23 @@
 package org.m2cs.mmislamicbooks.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import org.m2cs.mmislamicbooks.R
-import org.m2cs.mmislamicbooks.data.model.Category
+import org.m2cs.mmislamicbooks.data.vo.CategoryVO
 import org.m2cs.mmislamicbooks.viewholder.CategoryFragmentViewHolder
 
-class CategoryFragAdapter( val context: Context?): RecyclerView.Adapter<CategoryFragmentViewHolder>() {
+class CategoryFragAdapter(val context: Context?) : BaseRecyclerAdapter<CategoryFragmentViewHolder, CategoryVO>(context!!) {
 
-    val mCategoryList: ArrayList<Category> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryFragmentViewHolder {
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.category_content_view, parent, false)
+        val view = mLayoutInflater.inflate(R.layout.view_item_category_content, parent, false)
+
         return CategoryFragmentViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return mCategoryList.size
-    }
 
     override fun onBindViewHolder(holder: CategoryFragmentViewHolder, position: Int) {
 
-        holder.bind(mCategoryList[position])
+        holder.bind(mData!!.get(position))
     }
 
-    fun replaceData(catList: List<Category>) {
-        mCategoryList.clear()
-        mCategoryList.addAll(catList)
-        notifyDataSetChanged()
-    }
 }

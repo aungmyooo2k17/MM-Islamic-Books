@@ -7,6 +7,11 @@ import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.delegates.BooksItemDelegate
 import org.m2cs.mmislamicbooks.viewholder.BookSearchViewHolder
 import org.m2cs.mmislamicbooks.viewholder.HomeFragViewHolder
+import android.text.method.TextKeyListener.clear
+import android.text.TextUtils
+import android.text.method.TextKeyListener.clear
+import java.util.logging.Filter
+
 
 class BookSearchAdapter (val context: Context?, val mBooksItemDelegate: BooksItemDelegate) : BaseRecyclerAdapter<BookSearchViewHolder, BookVO>(context!!) {
 
@@ -22,5 +27,23 @@ class BookSearchAdapter (val context: Context?, val mBooksItemDelegate: BooksIte
     override fun onBindViewHolder(holder: BookSearchViewHolder, position: Int) {
         holder.bind(mData!!.get(position))
     }
+
+//    fun filter(sequence: CharSequence) {
+//        val temp = ArrayList<String>()
+//        if (!TextUtils.isEmpty(sequence)) {
+//            for (s in mData) {
+//                if (s.toLowerCase().contains(sequence)) {
+//                    temp.add(s)
+//                }
+//            }
+//        } else {
+//            temp.addAll(countriesCopy)
+//        }
+//        countries.clear()
+//        countries.addAll(temp)
+//        notifyDataSetChanged()
+//        temp.clear()
+//    }
+
 
 }

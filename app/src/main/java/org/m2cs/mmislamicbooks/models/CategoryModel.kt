@@ -5,8 +5,10 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import org.greenrobot.eventbus.EventBus
 import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.data.vo.CategoryVO
+import org.m2cs.mmislamicbooks.events.DataEvents
 import org.m2cs.mmislamicbooks.network.response.CategoryListResponse
 import kotlin.math.log
 
@@ -30,12 +32,18 @@ class CategoryModel private constructor(): BaseModel(){
                     }
 
                     override fun onNext(categoryListResponse: CategoryListResponse) {
-//                        Log.d("Tag", "onNext "+categoryListResponse)
+//
 
                         mCategorys = HashMap()
                         for (category: CategoryVO in categoryListResponse.getCategory!!){
                             (mCategorys as HashMap<String, CategoryVO>).put(category.categoryId!!, category)
                         }
+
+                        Log.d("Tag", "onNext "+categoryListResponse.getCategory.size)
+                        var event: DataEvents.CategoryLoadedEvent = DataEvents.CategoryLoadedEvent(categoryListResponse.getCategory!!)
+                        EventBus.getDefault().post(event)
+
+
                     }
 
                     override fun onError(e: Throwable) {
