@@ -28,22 +28,5 @@ class BookSearchAdapter (val context: Context?, val mBooksItemDelegate: BooksIte
         holder.bind(mData!!.get(position))
     }
 
-//    fun filter(sequence: CharSequence) {
-//        val temp = ArrayList<String>()
-//        if (!TextUtils.isEmpty(sequence)) {
-//            for (s in mData) {
-//                if (s.toLowerCase().contains(sequence)) {
-//                    temp.add(s)
-//                }
-//            }
-//        } else {
-//            temp.addAll(countriesCopy)
-//        }
-//        countries.clear()
-//        countries.addAll(temp)
-//        notifyDataSetChanged()
-//        temp.clear()
-//    }
-
 
 }

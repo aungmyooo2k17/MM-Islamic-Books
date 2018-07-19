@@ -22,7 +22,6 @@ import android.text.Editable
 import android.text.TextWatcher
 
 
-
 class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
 
 
@@ -32,8 +31,10 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
     private var bookList: ArrayList<BookVO> = ArrayList<BookVO>()
 
 
-
     override fun onTapBookItem(bookVO: BookVO) {
+
+        val intent: Intent = BookDetailActivity.newIntent(this, bookVO)
+        startActivity(intent)
 
     }
 
@@ -58,7 +59,7 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
         rvBookSearch.adapter = mBookSearchAdapter
 
         iv_search_close_btn.setOnClickListener(View.OnClickListener {
-          
+
 
             finish()
 
@@ -67,22 +68,28 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
 
         editText.addTextChangedListener(object : TextWatcher {
 
-            override fun onTextChanged(cs: CharSequence, arg1: Int, arg2: Int, arg3: Int) {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+                filterbookList.clear()
+
+                if (s.toString().length == 0) {
+                    filterbookList.addAll(bookList)
+                } else {
+                    for (bookVo in bookList) {
+                        if (bookVo.bookName.contains(s.toString())) {
+                            filterbookList.add(bookVo)
+                        }
+                    }
+                }
+
+                mBookSearchAdapter.setNewData(filterbookList)
+
 
             }
 
             override fun beforeTextChanged(s: CharSequence, arg1: Int, arg2: Int,
                                            arg3: Int) {
-                if (s.toString().length === 0) {
 
-                } else {
-                    for (i in 0 until bookList.size) {
-                        if (bookList.get(i).bookName.contains(s.toString().toLowerCase())) {
-                            filterbookList.add(bookList.get(i))
-                        }
-                    }
-                    mBookSearchAdapter.setNewData(filterbookList)
-                }
 
             }
 
@@ -90,8 +97,6 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
                 // TODO Auto-generated method stub
             }
         })
-
-
 
 
     }
@@ -102,7 +107,7 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
         Log.d("TAG", "BOOK LIST SEARCH" + event.bookList.size)
         mBookSearchAdapter.setNewData(event.bookList as MutableList<BookVO>)
 
-        for(bookVO: BookVO in event.bookList){
+        for (bookVO: BookVO in event.bookList) {
             bookList.add(bookVO)
         }
 
@@ -135,7 +140,6 @@ class BookSearchActivity : AppCompatActivity(), BooksItemDelegate {
 //        //calling a method of the adapter class and passing the filtered list
 //        mBookSearchAdapter.setNewData(filterbookList)
 //    }
-
 
 
 }

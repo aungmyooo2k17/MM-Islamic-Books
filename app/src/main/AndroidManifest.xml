@@ -32,8 +32,7 @@
         <activity android:name=".activity.PdfReaderActivity" />
 
         <service
-            android:name=".service.DownloadService"
-            android:exported="false" />
+            android:name=".service.DownloadService" />
 
         <activity android:name=".activity.AboutActivity"></activity>
         <activity android:name=".activity.BookSearchActivity"></activity>

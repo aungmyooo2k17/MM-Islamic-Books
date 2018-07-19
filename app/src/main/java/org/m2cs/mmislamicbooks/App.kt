@@ -30,7 +30,7 @@ class App : Application() {
         Log.i("App", "${mDb.getCount()}")
         if (mDb.getCount() == 0) {
             var root = Environment.getExternalStorageDirectory().toString()
-            var file = File(root, "/MM Islamic Book")
+            var file = File(root, "/MM Islamic Books")
             file.delete()
         }
 

@@ -31,6 +31,7 @@ import android.view.View
 import android.widget.*
 import butterknife.ButterKnife
 import org.m2cs.mmislamicbooks.App.Companion.downIds
+import org.m2cs.mmislamicbooks.adapter.SimilarBookAdapter
 import org.m2cs.mmislamicbooks.database.DbHelper
 import org.m2cs.mmislamicbooks.utils.DownloadUtils.getBookSize
 import org.m2cs.mmislamicbooks.utils.DownloadUtils.getNotiPercent
@@ -41,7 +42,7 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
 
 
 //    val books: ArrayList<Book> = ArrayList()
-    private lateinit var mHomeAdapter: HomeFragAdapter
+    private lateinit var mSimilarBookAdapter: SimilarBookAdapter
     lateinit var categoryVO: CategoryVO
     lateinit var downloadManager: DownloadManager
     lateinit var downloadManagerPro: DownloadManagerPro
@@ -103,11 +104,11 @@ class BookDetailActivity : AppCompatActivity(), BooksItemDelegate {
 
 
         rv_similar_book.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        mHomeAdapter = HomeFragAdapter(this, this)
-        rv_similar_book.adapter = mHomeAdapter
+        mSimilarBookAdapter = SimilarBookAdapter(this, this)
+        rv_similar_book.adapter = mSimilarBookAdapter
         rv_similar_book.isNestedScrollingEnabled = false
         rv_similar_book.setFocusable(false);
-        mHomeAdapter.setNewData(BookModel.getsObjectInstance().getBookByCategoryId(bookVO.categoryId) as MutableList<BookVO>)
+        mSimilarBookAdapter.setNewData(BookModel.getsObjectInstance().getBookByCategoryId(bookVO.categoryId) as MutableList<BookVO>)
         handler = MyHandler(btn_cancel, btn_download, tv_download_percent, tv_download_size, btn_progress)
         downloadManager = this.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
 
