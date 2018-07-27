@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.fragment_category.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.greenrobot.eventbus.EventBus
@@ -51,6 +52,7 @@ class CategoryFragment : BaseFragment() {
         CategoryModel.getObjectInstance().loadCategory()
 
 
+
         return view
     }
 
@@ -87,10 +89,12 @@ class CategoryFragment : BaseFragment() {
 //    }
 
     private fun setUpRecyclerView(view: View) {
+        view.categoryProgress.visibility = View.VISIBLE
         view.recyclerViewCategory.layoutManager = LinearLayoutManager(activity)
         view.recyclerViewCategory.isNestedScrollingEnabled = true
         categoryAdapter = CategoryFragAdapter(context)
         view.recyclerViewCategory.adapter = categoryAdapter
+
     }
 
 
@@ -100,6 +104,8 @@ class CategoryFragment : BaseFragment() {
         if (event != null) {
 //            view!!.homeProgress.visibility = View.GONE
             categoryAdapter.setNewData(event.categoryList as MutableList<CategoryVO>)
+            categoryProgress.visibility = View.GONE
+
         } else {
 
         }

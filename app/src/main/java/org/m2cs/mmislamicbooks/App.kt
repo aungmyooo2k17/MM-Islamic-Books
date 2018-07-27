@@ -14,7 +14,10 @@ import java.io.File
 import android.graphics.Typeface
 import android.R.attr.typeface
 import android.content.res.AssetManager
+import org.m2cs.mmislamicbooks.data.vo.CategoryVO
+import org.m2cs.mmislamicbooks.models.CategoryModel
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class App : Application() {
@@ -22,8 +25,17 @@ class App : Application() {
     lateinit var completeReceiver: DownloadCompleteReceiver
     lateinit var mDb: DbHelper
 
+    companion object {
+
+        var TAG = "MMISLAMICBOOK"
+        var globalBookList: List<BookVO>? = ArrayList<BookVO>()
+        var globalCateogryList: List<CategoryVO>? = ArrayList<CategoryVO>()
+        var downIds = arrayListOf<Long>()
+         var typeface:Typeface? = null
+    }
     override fun onCreate() {
         super.onCreate()
+        CategoryModel.getObjectInstance().loadCategory()
         completeReceiver = DownloadCompleteReceiver()
         registerReceiver(completeReceiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
         mDb = DbHelper(applicationContext)
@@ -43,11 +55,4 @@ class App : Application() {
     }
 
 
-    companion object {
-
-        var TAG = "MMISLAMICBOOK"
-        var globalBookList: List<BookVO>? = ArrayList<BookVO>()
-        var downIds = arrayListOf<Long>()
-         var typeface:Typeface? = null
-    }
 }

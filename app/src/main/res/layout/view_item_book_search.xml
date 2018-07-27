@@ -9,7 +9,7 @@
         android:id="@+id/iv_book_item"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@drawable/ic_close"
+        android:src="@drawable/openbook"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/margin_medium_2"/>
 

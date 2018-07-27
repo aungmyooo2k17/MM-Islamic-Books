@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <TextView
         android:id="@+id/categoryTitle"
         android:layout_width="wrap_content"
@@ -15,20 +16,20 @@
         android:textStyle="bold" />
 
 
-    <TextView
-        android:id="@+id/tvCategoryCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/margin_medium_2"
-        android:layout_marginRight="@dimen/margin_medium_2"
-        android:layout_toLeftOf="@id/ivBtn"
-        android:background="@drawable/category_count_circle"
-        android:gravity="center"
-        android:text="1"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_small"
-        android:textStyle="bold" />
+    <!--<TextView-->
+        <!--android:id="@+id/tvCategoryCount"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="@dimen/margin_medium_2"-->
+        <!--android:layout_marginRight="@dimen/margin_medium_2"-->
+        <!--android:layout_toLeftOf="@id/ivBtn"-->
+        <!--android:background="@drawable/category_count_circle"-->
+        <!--android:gravity="center"-->
+        <!--android:text="1"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="@dimen/text_small"-->
+        <!--android:textStyle="bold" />-->
 
 
     <ImageView
@@ -44,7 +45,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/tvCategoryCount"
+        android:layout_below="@id/categoryTitle"
         android:layout_marginLeft="@dimen/margin_medium"
         android:layout_marginRight="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_medium_3"

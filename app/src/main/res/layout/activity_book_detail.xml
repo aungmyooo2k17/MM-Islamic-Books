@@ -79,12 +79,11 @@
                 android:background="@drawable/button_border"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold"
-                android:drawableRight="@drawable/ic_file_download"
                 android:paddingLeft="@dimen/margin_medium"
                 android:paddingRight="@dimen/margin_medium"
                 android:paddingTop="@dimen/margin_medium"
                 android:paddingBottom="@dimen/margin_medium"
-                tools:text="hello"/>
+                tools:text="Downlaod"/>
 
             <ImageView
                 android:id="@+id/btn_cancel"
@@ -148,7 +147,7 @@
             android:layout_below="@id/line"
             android:layout_marginStart="@dimen/margin_medium_2"
             android:layout_marginTop="8dp"
-            android:text="Sub Title"
+            android:text="စာအုပ္ေၾကာင္းအရာအက်ဥ္း"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/text_regular_2x"
             android:textStyle="bold"

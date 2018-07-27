@@ -132,6 +132,14 @@
 
             </FrameLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/info3"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_small"
+                android:text="Resources from : http://myanmarfreeislamicbooks.blogspot.com/p/covers-array.html"/>
+
 
         </RelativeLayout>
 

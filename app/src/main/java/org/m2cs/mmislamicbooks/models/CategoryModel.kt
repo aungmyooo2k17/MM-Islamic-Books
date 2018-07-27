@@ -6,6 +6,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
+import org.m2cs.mmislamicbooks.App
 import org.m2cs.mmislamicbooks.data.vo.BookVO
 import org.m2cs.mmislamicbooks.data.vo.CategoryVO
 import org.m2cs.mmislamicbooks.events.DataEvents
@@ -38,8 +39,11 @@ class CategoryModel private constructor(): BaseModel(){
                         for (category: CategoryVO in categoryListResponse.getCategory!!){
                             (mCategorys as HashMap<String, CategoryVO>).put(category.categoryId!!, category)
                         }
-
                         Log.d("Tag", "onNext "+categoryListResponse.getCategory.size)
+
+
+                        App.globalCateogryList = categoryListResponse.getCategory
+
                         var event: DataEvents.CategoryLoadedEvent = DataEvents.CategoryLoadedEvent(categoryListResponse.getCategory!!)
                         EventBus.getDefault().post(event)
 
