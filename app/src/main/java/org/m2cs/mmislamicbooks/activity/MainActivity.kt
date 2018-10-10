@@ -20,7 +20,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
-class MainActivity : AppCompatActivity(), BookMainDelegate {
+class MainActivity : BaseActivity(), BookMainDelegate {
 
 //    private lateinit var bookViewModel: BookViewModel
 //    private lateinit var factory: ViewModelProvider.Factory
